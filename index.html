@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAAVY withMe - Interactive Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .prototype-container {
+            position: relative;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        .screen {
+            display: none;
+            position: relative;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            background: transparent;
+            transition: background-color 0.2s ease;
+        }
+
+        .hotspot:hover {
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        /* Debug mode - shows hotspots */
+        body.debug .hotspot {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px dashed red;
+        }
+
+        /* Navigation panel */
+        .nav-panel {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            font-size: 12px;
+            max-height: 90vh;
+            overflow-y: auto;
+            width: 280px;
+        }
+
+        .nav-panel h3 {
+            margin-bottom: 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+        }
+
+        .nav-panel .nav-section {
+            margin-bottom: 12px;
+        }
+
+        .nav-panel .nav-section-title {
+            font-weight: bold;
+            color: #4fc3f7;
+            margin-bottom: 5px;
+            font-size: 11px;
+        }
+
+        .nav-panel button {
+            display: block;
+            width: 100%;
+            padding: 6px 10px;
+            margin: 3px 0;
+            background: #444;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: left;
+            font-size: 11px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-panel button:hover {
+            background: #0078d4;
+        }
+
+        .nav-panel button.active {
+            background: #0078d4;
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 10px;
+            right: 300px;
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 12px;
+        }
+
+        .nav-toggle:hover {
+            background: #555;
+        }
+
+        .debug-toggle {
+            position: fixed;
+            top: 10px;
+            right: 400px;
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 12px;
+        }
+
+        .debug-toggle:hover {
+            background: #f44336;
+        }
+
+        .screen-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        /* Tooltip for hotspots */
+        .hotspot::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .hotspot:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <button class="debug-toggle" onclick="toggleDebug()">Toggle Hotspots</button>
+    <button class="nav-toggle" onclick="toggleNav()">Toggle Nav</button>
+
+    <div class="nav-panel" id="navPanel">
+        <h3>Screen Navigator</h3>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Personalization Flow</div>
+            <button onclick="showScreen('1100')">1100 - Personalization (Start)</button>
+            <button onclick="showScreen('1100-1')">1100-1 - Personalization (2 fields)</button>
+            <button onclick="showScreen('1102')">1102 - Personalization Error</button>
+            <button onclick="showScreen('1103')">1103 - Identify Dropdown</button>
+            <button onclick="showScreen('1104')">1104 - Patient Selected</button>
+            <button onclick="showScreen('1105')">1105 - Prescription Dropdown</button>
+            <button onclick="showScreen('1109')">1109 - Caregiver Flow</button>
+            <button onclick="showScreen('1109-1')">1109-1 - Caregiver (variant)</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Name and Email Flow</div>
+            <button onclick="showScreen('1130')">1130 - Name and Email</button>
+            <button onclick="showScreen('1133')">1133 - Customize Open</button>
+            <button onclick="showScreen('1133-1')">1133.1 - Q1 Yes</button>
+            <button onclick="showScreen('1133-2')">1133.2 - Q1 No</button>
+            <button onclick="showScreen('1134')">1134 - Error State</button>
+            <button onclick="showScreen('1135')">1135 - Filled Form</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Contact Information Flow</div>
+            <button onclick="showScreen('1140')">1140 - Contact Info (Start)</button>
+            <button onclick="showScreen('1143')">1143 - Text Comms</button>
+            <button onclick="showScreen('1144')">1144 - Filled Form</button>
+            <button onclick="showScreen('1146')">1146 - Under 18</button>
+            <button onclick="showScreen('1148')">1148 - Customize Call Open</button>
+            <button onclick="showScreen('1148-1')">1148.1 - Call Answered v1</button>
+            <button onclick="showScreen('1148-2')">1148.2 - Call Answered v2</button>
+            <button onclick="showScreen('1148-3')">1148.3 - Call Answered v3</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Cost Support Flow</div>
+            <button onclick="showScreen('1155')">1155 - Insurance None</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Status Variants</div>
+            <button onclick="showScreen('1105-1')">1105-1 - Status 1</button>
+            <button onclick="showScreen('1105-2')">1105-2 - Status 2</button>
+            <button onclick="showScreen('1105-3')">1105-3 - Status 3</button>
+            <button onclick="showScreen('1105-4')">1105-4 - Status 4</button>
+            <button onclick="showScreen('1105-5')">1105-5 - Status 5</button>
+        </div>
+    </div>
+
+    <div class="screen-indicator" id="screenIndicator">Screen: 1100 - Personalization</div>
+
+    <div class="prototype-container">
+        <!-- Screen 1100 - Personalization Start -->
+        <div class="screen active" id="screen-1100">
+            <img src="src/OGE_1100-D_HP/Personalization.png" alt="Personalization">
+            <!-- "I am a" dropdown -->
+            <div class="hotspot" data-tooltip="Select who you are" onclick="showScreen('1103')" style="left: 6%; top: 22.8%; width: 12.5%; height: 3%;"></div>
+            <!-- "Prescription status" dropdown -->
+            <div class="hotspot" data-tooltip="Select prescription status" onclick="showScreen('1105')" style="left: 24%; top: 22.8%; width: 14%; height: 3%;"></div>
+            <!-- "Age" dropdown -->
+            <div class="hotspot" data-tooltip="Select your age" style="left: 6%; top: 27%; width: 10.5%; height: 3%;"></div>
+            <!-- Continue button -->
+            <div class="hotspot" data-tooltip="Continue (shows error)" onclick="showScreen('1102')" style="left: 1.5%; top: 47%; width: 9.5%; height: 3.2%;"></div>
+            <!-- Header nav arrows -->
+            <div class="hotspot" data-tooltip="Previous screen" onclick="showScreen('1155')" style="left: 32.5%; top: 1.8%; width: 2%; height: 2%;"></div>
+            <div class="hotspot" data-tooltip="Next screen" onclick="showScreen('1102')" style="left: 36.5%; top: 1.8%; width: 2%; height: 2%;"></div>
+        </div>
+
+        <!-- Screen 1100-1 - Personalization (2 fields visible) -->
+        <div class="screen" id="screen-1100-1">
+            <img src="src/OGE_1100-D_HP/Personalization-1.png" alt="Personalization">
+            <div class="hotspot" data-tooltip="Select who you are" onclick="showScreen('1103')" style="left: 6%; top: 23.5%; width: 12.5%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Select prescription status" onclick="showScreen('1105')" style="left: 24%; top: 23.5%; width: 14%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 44.5%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+
+        <!-- Screen 1102 - Personalization Error -->
+        <div class="screen" id="screen-1102">
+            <img src="src/OGE_1102-D_HP/Personalization/Error.png" alt="Personalization Error">
+            <div class="hotspot" data-tooltip="Select who you are" onclick="showScreen('1103')" style="left: 6%; top: 22%; width: 12.5%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Select prescription status" onclick="showScreen('1105')" style="left: 24%; top: 22%; width: 14%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Select your age" style="left: 6%; top: 28%; width: 10.5%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 49%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+
+        <!-- Screen 1103 - Identify Dropdown Open -->
+        <div class="screen" id="screen-1103">
+            <img src="src/OGE 1103-D_HP/Personalization/Identify.png" alt="Identify Dropdown">
+            <div class="hotspot" data-tooltip="Select Patient" onclick="showScreen('1104')" style="left: 6%; top: 26%; width: 11.5%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Select Caregiver" onclick="showScreen('1109')" style="left: 6%; top: 29%; width: 11.5%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Close dropdown" onclick="showScreen('1100')" style="left: 6%; top: 22.8%; width: 12.5%; height: 3%;"></div>
+        </div>
+
+        <!-- Screen 1104 - Patient Selected -->
+        <div class="screen" id="screen-1104">
+            <img src="src/OGE_1104-D_HP/Personalization/Identify/Patient.png" alt="Patient Selected">
+            <div class="hotspot" data-tooltip="Change selection" onclick="showScreen('1103')" style="left: 6%; top: 22.8%; width: 9.5%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Select prescription status" onclick="showScreen('1105')" style="left: 19%; top: 22.8%; width: 14%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Select your age" style="left: 6%; top: 27%; width: 10.5%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 47%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+
+        <!-- Screen 1105 - Prescription Status Dropdown -->
+        <div class="screen" id="screen-1105">
+            <img src="src/OGE_1105-D_HP/Personalization/Status.png" alt="Prescription Status Dropdown">
+            <div class="hotspot" data-tooltip="Currently prescribed" onclick="showScreen('1104')" style="left: 19%; top: 26.5%; width: 18%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Not yet prescribed" onclick="showScreen('1104')" style="left: 19%; top: 29.5%; width: 18%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Close dropdown" onclick="showScreen('1104')" style="left: 19%; top: 22.8%; width: 18%; height: 3%;"></div>
+        </div>
+
+        <!-- Screen 1105-1 through 1105-5 - Status Variants -->
+        <div class="screen" id="screen-1105-1">
+            <img src="src/OGE_1105-D_HP/Personalization/Status-1.png" alt="Status Variant 1">
+            <div class="hotspot" data-tooltip="Currently prescribed" onclick="showScreen('1104')" style="left: 19%; top: 26.5%; width: 18%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Not yet prescribed" onclick="showScreen('1104')" style="left: 19%; top: 29.8%; width: 18%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 45%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+        <div class="screen" id="screen-1105-2">
+            <img src="src/OGE_1105-D_HP/Personalization/Status-2.png" alt="Status Variant 2">
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 45%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+        <div class="screen" id="screen-1105-3">
+            <img src="src/OGE_1105-D_HP/Personalization/Status-3.png" alt="Status Variant 3">
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 45%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+        <div class="screen" id="screen-1105-4">
+            <img src="src/OGE_1105-D_HP/Personalization/Status-4.png" alt="Status Variant 4">
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 45%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+        <div class="screen" id="screen-1105-5">
+            <img src="src/OGE_1105-D_HP/Personalization/Status-5.png" alt="Status Variant 5">
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 45%; width: 9.5%; height: 3.2%;"></div>
+        </div>
+
+        <!-- Screen 1109 - Caregiver Flow -->
+        <div class="screen" id="screen-1109">
+            <img src="src/OGE_1109-D_HP/Personalization/Single Option/Multiple Conditions.png" alt="Caregiver Flow">
+            <div class="hotspot" data-tooltip="Change role" onclick="showScreen('1103')" style="left: 5.5%; top: 12.5%; width: 9%; height: 2.5%;"></div>
+            <div class="hotspot" data-tooltip="Select prescription status" style="left: 26%; top: 12.5%; width: 15%; height: 2.5%;"></div>
+            <div class="hotspot" data-tooltip="Select patient age" style="left: 11.5%; top: 15.5%; width: 10%; height: 2.5%;"></div>
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 71.5%; width: 7.5%; height: 2.8%;"></div>
+        </div>
+
+        <!-- Screen 1109-1 - Caregiver Variant -->
+        <div class="screen" id="screen-1109-1">
+            <img src="src/OGE_1109-D_HP/Personalization/Single Option/Multiple Conditions-1.png" alt="Caregiver Flow Variant">
+            <div class="hotspot" data-tooltip="Continue" onclick="showScreen('1130')" style="left: 1.5%; top: 71.5%; width: 7.5%; height: 2.8%;"></div>
+        </div>
+
+        <!-- Screen 1130 - Name and Email -->
+        <div class="screen" id="screen-1130">
+            <img src="src/OGE 1130-D_HP/Name and Email.png" alt="Name and Email">
+            <!-- First Name input -->
+            <div class="hotspot" data-tooltip="First Name field" onclick="showScreen('1135')" style="left: 2%; top: 35%; width: 23%; height: 4.5%;"></div>
+            <!-- Last Name input -->
+            <div class="hotspot" data-tooltip="Last Name field" onclick="showScreen('1135')" style="left: 25.5%; top: 35%; width: 19%; height: 4.5%;"></div>
+            <!-- Email input -->
+            <div class="hotspot" data-tooltip="Email field" onclick="showScreen('1135')" style="left: 2%; top: 40.5%; width: 23%; height: 4%;"></div>
+            <!-- Customize communications accordion -->
+            <div class="hotspot" data-tooltip="Customize your communications" onclick="showScreen('1133')" style="left: 2%; top: 62%; width: 44%; height: 3.2%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit (shows error)" onclick="showScreen('1134')" style="left: 2%; top: 67%; width: 14%; height: 3%;"></div>
+            <!-- Back button -->
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 67%; width: 5.5%; height: 3%;"></div>
+            <!-- Step 2 in progress bar -->
+            <div class="hotspot" data-tooltip="Contact Information" onclick="showScreen('1140')" style="left: 14%; top: 4.5%; width: 10%; height: 3%;"></div>
+        </div>
+
+        <!-- Screen 1133 - Customize Communications Open -->
+        <div class="screen" id="screen-1133">
+            <img src="src/OGE_1133-D_HP/Name and Email/Open.png" alt="Customize Communications Open">
+            <!-- Form fields -->
+            <div class="hotspot" data-tooltip="First Name" onclick="showScreen('1135')" style="left: 2%; top: 27%; width: 23%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Last Name" onclick="showScreen('1135')" style="left: 25.5%; top: 27%; width: 19%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Email" onclick="showScreen('1135')" style="left: 2%; top: 31.5%; width: 23%; height: 3.5%;"></div>
+            <!-- Customize accordion header -->
+            <div class="hotspot" data-tooltip="Collapse section" onclick="showScreen('1130')" style="left: 2%; top: 46.5%; width: 37%; height: 2.8%;"></div>
+            <!-- Yes option -->
+            <div class="hotspot" data-tooltip="Yes, started treatment" onclick="showScreen('1133-1')" style="left: 2.5%; top: 59%; width: 8%; height: 1.8%;"></div>
+            <!-- No option -->
+            <div class="hotspot" data-tooltip="No, haven't started" onclick="showScreen('1133-2')" style="left: 2.5%; top: 61.2%; width: 8%; height: 1.8%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1140')" style="left: 2%; top: 66%; width: 14%; height: 2.5%;"></div>
+            <!-- Back button -->
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 66%; width: 5.5%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1133-1 - Q1 Yes -->
+        <div class="screen" id="screen-1133-1">
+            <img src="src/OGE_1133.1-D_HP/Name and Email/Open/Q1/Yes.png" alt="Q1 Yes Response">
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1140')" style="left: 2%; top: 77%; width: 14%; height: 2.5%;"></div>
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 77%; width: 5.5%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1133-2 - Q1 No -->
+        <div class="screen" id="screen-1133-2">
+            <img src="src/OGE_1133.2-D_HP/Name and Email/Open/Q1/No.png" alt="Q1 No Response">
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1140')" style="left: 2%; top: 66%; width: 14%; height: 2.5%;"></div>
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 66%; width: 5.5%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1134 - Name and Email Error -->
+        <div class="screen" id="screen-1134">
+            <img src="src/OGE_1134-D_HP/Name and Email/Error.png" alt="Name and Email Error">
+            <div class="hotspot" data-tooltip="First Name" onclick="showScreen('1135')" style="left: 2%; top: 35.5%; width: 23%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Last Name" onclick="showScreen('1135')" style="left: 25.5%; top: 35.5%; width: 19%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Email" onclick="showScreen('1135')" style="left: 2%; top: 41%; width: 23%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1140')" style="left: 2%; top: 68.5%; width: 14%; height: 2.8%;"></div>
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 68.5%; width: 5.5%; height: 2.8%;"></div>
+        </div>
+
+        <!-- Screen 1135 - Name and Email Filled -->
+        <div class="screen" id="screen-1135">
+            <img src="src/OGE_1135-D_HP/Name and Email/Filled.png" alt="Name and Email Filled">
+            <div class="hotspot" data-tooltip="Customize your communications" onclick="showScreen('1133')" style="left: 2%; top: 62%; width: 44%; height: 3.2%;"></div>
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1140')" style="left: 2%; top: 67%; width: 14%; height: 3%;"></div>
+            <div class="hotspot" data-tooltip="Go back" onclick="showScreen('1104')" style="left: 16.5%; top: 67%; width: 5.5%; height: 3%;"></div>
+        </div>
+
+        <!-- Screen 1140 - Contact Information -->
+        <div class="screen" id="screen-1140">
+            <img src="src/OGE_1140-D_HP/Contact Information.png" alt="Contact Information">
+            <!-- Phone field -->
+            <div class="hotspot" data-tooltip="Phone" onclick="showScreen('1143')" style="left: 2%; top: 17.5%; width: 21%; height: 4%;"></div>
+            <!-- Phone Type dropdown -->
+            <div class="hotspot" data-tooltip="Phone Type" onclick="showScreen('1143')" style="left: 23.5%; top: 17.5%; width: 13%; height: 4%;"></div>
+            <!-- Address fields -->
+            <div class="hotspot" data-tooltip="Street Address" onclick="showScreen('1144')" style="left: 2%; top: 23%; width: 30%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Apartment" onclick="showScreen('1144')" style="left: 33%; top: 23%; width: 12%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="City" onclick="showScreen('1144')" style="left: 2%; top: 28%; width: 18%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="State" onclick="showScreen('1144')" style="left: 21%; top: 28%; width: 10%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Zip Code" onclick="showScreen('1144')" style="left: 32%; top: 28%; width: 8.5%; height: 3.5%;"></div>
+            <!-- Date of Birth -->
+            <div class="hotspot" data-tooltip="Date of Birth (Under 18 flow)" onclick="showScreen('1146')" style="left: 2%; top: 33%; width: 21%; height: 3.5%;"></div>
+            <!-- Sex dropdown -->
+            <div class="hotspot" data-tooltip="Sex assigned at birth" onclick="showScreen('1144')" style="left: 23.5%; top: 33%; width: 18%; height: 3.5%;"></div>
+            <!-- Welcome kit checkbox -->
+            <div class="hotspot" data-tooltip="Welcome Kit option" onclick="showScreen('1144')" style="left: 2%; top: 38.5%; width: 42%; height: 5%;"></div>
+            <!-- Text comms checkbox -->
+            <div class="hotspot" data-tooltip="Text communications permission" onclick="showScreen('1143')" style="left: 2%; top: 46%; width: 45%; height: 6.5%;"></div>
+            <!-- Customize call accordion -->
+            <div class="hotspot" data-tooltip="Customize your call" onclick="showScreen('1148')" style="left: 2%; top: 54%; width: 42%; height: 3%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 61%; width: 11%; height: 3%;"></div>
+            <!-- Step navigation -->
+            <div class="hotspot" data-tooltip="Go to Personalized Support" onclick="showScreen('1130')" style="left: 2%; top: 4.5%; width: 10%; height: 3.5%;"></div>
+            <div class="hotspot" data-tooltip="Go to Cost Support" onclick="showScreen('1155')" style="left: 24%; top: 4.5%; width: 8%; height: 3.5%;"></div>
+        </div>
+
+        <!-- Screen 1143 - Text Communications -->
+        <div class="screen" id="screen-1143">
+            <img src="src/OGE_1143-D_HP/Contact Information/Text Comms.png" alt="Contact Info Text Comms">
+            <!-- Phone for text -->
+            <div class="hotspot" data-tooltip="Phone for text" onclick="showScreen('1144')" style="left: 2%; top: 53.5%; width: 21%; height: 3.5%;"></div>
+            <!-- Customize call accordion -->
+            <div class="hotspot" data-tooltip="Customize your call" onclick="showScreen('1148')" style="left: 2%; top: 58%; width: 42%; height: 2.8%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 74.5%; width: 11%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1144 - Contact Information Filled -->
+        <div class="screen" id="screen-1144">
+            <img src="src/OGE_1144-D_HP/Contact Information/Filled.png" alt="Contact Info Filled">
+            <!-- Customize call accordion -->
+            <div class="hotspot" data-tooltip="Customize your call" onclick="showScreen('1148')" style="left: 2%; top: 58%; width: 42%; height: 2.8%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 74.5%; width: 11%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1146 - Under 18 -->
+        <div class="screen" id="screen-1146">
+            <img src="src/OGE_1146-D_HP/Contact Information/Under 18.png" alt="Under 18">
+            <div class="hotspot" data-tooltip="Try Again" onclick="showScreen('1140')" style="left: 1.5%; top: 42.5%; width: 9.5%; height: 4%;"></div>
+        </div>
+
+        <!-- Screen 1148 - Customize Call Open -->
+        <div class="screen" id="screen-1148">
+            <img src="src/OGE_1148-D_HP/Contact Information/Customize Call.png" alt="Customize Call Open">
+            <!-- Time preference checkboxes -->
+            <div class="hotspot" data-tooltip="Morning (8:00 AM to 12:00 PM)" onclick="showScreen('1148-1')" style="left: 2.5%; top: 44.8%; width: 22%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Afternoon (12:00 PM to 4:00 PM)" onclick="showScreen('1148-1')" style="left: 2.5%; top: 46.8%; width: 24%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Evening (4:00 PM to 8:00 PM)" onclick="showScreen('1148-1')" style="left: 2.5%; top: 48.8%; width: 22%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="No preference" onclick="showScreen('1148-1')" style="left: 2.5%; top: 50.8%; width: 16%; height: 1.8%;"></div>
+            <!-- Language options -->
+            <div class="hotspot" data-tooltip="English" onclick="showScreen('1148-2')" style="left: 2.5%; top: 56.2%; width: 12%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Spanish" onclick="showScreen('1148-2')" style="left: 2.5%; top: 58.2%; width: 12%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Mandarin Chinese" onclick="showScreen('1148-2')" style="left: 2.5%; top: 60.2%; width: 16%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="American Sign Language" onclick="showScreen('1148-2')" style="left: 2.5%; top: 62.2%; width: 20%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Other" onclick="showScreen('1148-2')" style="left: 2.5%; top: 64.2%; width: 10%; height: 1.8%;"></div>
+            <!-- Treatment status -->
+            <div class="hotspot" data-tooltip="Have received infusion" onclick="showScreen('1148-3')" style="left: 2.5%; top: 68.5%; width: 22%; height: 1.8%;"></div>
+            <div class="hotspot" data-tooltip="Haven't started treatment" onclick="showScreen('1148-3')" style="left: 2.5%; top: 70.5%; width: 24%; height: 1.8%;"></div>
+            <!-- Submit button -->
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 78%; width: 11%; height: 2.5%;"></div>
+        </div>
+
+        <!-- Screen 1148-1 - Customize Call Answered v1 -->
+        <div class="screen" id="screen-1148-1">
+            <img src="src/OGE_1148.1-D_HP/Contact Information/Customize Call/Answered v1.png" alt="Customize Call Answered v1">
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 81%; width: 11%; height: 2.3%;"></div>
+        </div>
+
+        <!-- Screen 1148-2 - Customize Call Answered v2 -->
+        <div class="screen" id="screen-1148-2">
+            <img src="src/OGE_1148.2-D_HP/Contact Information/Customize Call/Answered v2.png" alt="Customize Call Answered v2">
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 81%; width: 11%; height: 2.3%;"></div>
+        </div>
+
+        <!-- Screen 1148-3 - Customize Call Answered v3 -->
+        <div class="screen" id="screen-1148-3">
+            <img src="src/OGE_1148.3-D_HP/Contact Information/Customize Call/Answered v3.png" alt="Customize Call Answered v3">
+            <div class="hotspot" data-tooltip="Submit and Continue" onclick="showScreen('1155')" style="left: 2%; top: 81%; width: 11%; height: 2.3%;"></div>
+        </div>
+
+        <!-- Screen 1155 - Cost Support / Insurance None -->
+        <div class="screen" id="screen-1155">
+            <img src="src/OGE_1155-D_HP/Cost Support/Ins Cov/None.png" alt="Cost Support Insurance None">
+            <div class="hotspot" data-tooltip="Try Again" onclick="showScreen('1140')" style="left: 1.5%; top: 42.5%; width: 9.5%; height: 4%;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Screen name mapping for display
+        const screenNames = {
+            '1100': '1100 - Personalization (Start)',
+            '1100-1': '1100-1 - Personalization (2 fields)',
+            '1102': '1102 - Personalization Error',
+            '1103': '1103 - Identify Dropdown',
+            '1104': '1104 - Patient Selected',
+            '1105': '1105 - Prescription Status',
+            '1105-1': '1105-1 - Status Variant 1',
+            '1105-2': '1105-2 - Status Variant 2',
+            '1105-3': '1105-3 - Status Variant 3',
+            '1105-4': '1105-4 - Status Variant 4',
+            '1105-5': '1105-5 - Status Variant 5',
+            '1109': '1109 - Caregiver Flow',
+            '1109-1': '1109-1 - Caregiver Variant',
+            '1130': '1130 - Name and Email',
+            '1133': '1133 - Customize Open',
+            '1133-1': '1133.1 - Q1 Yes',
+            '1133-2': '1133.2 - Q1 No',
+            '1134': '1134 - Error State',
+            '1135': '1135 - Filled Form',
+            '1140': '1140 - Contact Information',
+            '1143': '1143 - Text Comms',
+            '1144': '1144 - Filled Form',
+            '1146': '1146 - Under 18',
+            '1148': '1148 - Customize Call',
+            '1148-1': '1148.1 - Call Answered v1',
+            '1148-2': '1148.2 - Call Answered v2',
+            '1148-3': '1148.3 - Call Answered v3',
+            '1155': '1155 - Insurance None'
+        };
+
+        let currentScreen = '1100';
+
+        function showScreen(screenId) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show selected screen
+            const targetScreen = document.getElementById('screen-' + screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                currentScreen = screenId;
+
+                // Update indicator
+                document.getElementById('screenIndicator').textContent =
+                    'Screen: ' + (screenNames[screenId] || screenId);
+
+                // Update nav button states
+                document.querySelectorAll('.nav-panel button').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.includes(screenId)) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function toggleDebug() {
+            document.body.classList.toggle('debug');
+        }
+
+        function toggleNav() {
+            const navPanel = document.getElementById('navPanel');
+            navPanel.style.display = navPanel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'd' || e.key === 'D') {
+                toggleDebug();
+            }
+            if (e.key === 'n' || e.key === 'N') {
+                toggleNav();
+            }
+        });
+
+        // Initialize
+        showScreen('1100');
+    </script>
+</body>
+</html>

@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMAAVY withMe - Interactive Prototype</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ============================================
+         HEADER (Shared across all screens)
+         ============================================ -->
+    <header class="header">
+        <div class="header-left">
+            <!-- imaavy withMe logo -->
+            <a href="#" class="logo-withme" onclick="showScreen('1100'); return false;">
+                <img src="assets/images/logo-withme.png" alt="imaavy withMe" class="logo-withme-img">
+            </a>
+
+            <span class="logo-divider"></span>
+
+            <!-- imaavy brand logo with icon -->
+            <a href="#" class="logo-brand" onclick="showScreen('1100'); return false;">
+                <img src="assets/images/logo-imaavy.svg" alt="imaavy (nipocalimab-aahu)" class="logo-brand-img">
+            </a>
+        </div>
+
+        <div class="header-right">
+            <a href="#" class="header-link">Important Safety Information</a>
+            <a href="#" class="header-link">Full Prescribing Information</a>
+            <button class="btn-signin">Sign In</button>
+        </div>
+    </header>
+
+    <!-- ============================================
+         SCREEN: 1100 - Personalization (Start)
+         ============================================ -->
+    <div class="screen active" id="screen-1100">
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title">To find the best programs for your journey, simply answer a few questions below to begin your enrollment.</h1>
+
+                <p class="required-note"><span class="text-required">*</span> Required field</p>
+
+                <div class="form-row-inline mb-4">
+                    <span class="form-label-inline">I am a <span class="text-required">*</span></span>
+                    <div class="custom-dropdown" id="dropdown-who">
+                        <div class="custom-dropdown-trigger" data-placeholder="select who you are">select who you are</div>
+                        <div class="custom-dropdown-menu">
+                            <div class="custom-dropdown-option" data-value="patient">Patient</div>
+                            <div class="custom-dropdown-option" data-value="caregiver">Caregiver</div>
+                        </div>
+                        <input type="hidden" name="select-who" id="select-who" value="">
+                    </div>
+
+                    <span class="form-label-inline">and I am <span class="text-required">*</span></span>
+                    <div class="custom-dropdown" id="dropdown-prescription">
+                        <div class="custom-dropdown-trigger" data-placeholder="select prescription status">select prescription status</div>
+                        <div class="custom-dropdown-menu">
+                            <div class="custom-dropdown-option" data-value="current">currently prescribed IMAAVY™</div>
+                            <div class="custom-dropdown-option" data-value="not-yet">not yet prescribed IMAAVY™</div>
+                        </div>
+                        <input type="hidden" name="select-prescription" id="select-prescription" value="">
+                    </div>
+                </div>
+
+                <div class="form-row-inline mb-6">
+                    <span class="form-label-inline">I am <span class="text-required">*</span></span>
+                    <div class="custom-dropdown" id="dropdown-age">
+                        <div class="custom-dropdown-trigger" data-placeholder="select your age">select your age</div>
+                        <div class="custom-dropdown-menu">
+                            <div class="custom-dropdown-option" data-value="18-24">18-24</div>
+                            <div class="custom-dropdown-option" data-value="25-34">25-34</div>
+                            <div class="custom-dropdown-option" data-value="35-44">35-44</div>
+                            <div class="custom-dropdown-option" data-value="45-54">45-54</div>
+                            <div class="custom-dropdown-option" data-value="55-64">55-64</div>
+                            <div class="custom-dropdown-option" data-value="65+">65+</div>
+                            <div class="custom-dropdown-option" data-value="under-18">Under 18</div>
+                        </div>
+                        <input type="hidden" name="select-age" id="select-age" value="">
+                    </div>
+                </div>
+
+                <div class="legal-text">
+                    <p>The information you provide here should match what is listed on the health insurance documents. The information you provide in the following screens and, as applicable based on your responses, in any subsequent enrollment form, will be used by Johnson & Johnson Health Care Systems Inc., our affiliates, and our service providers to determine your eligibility for programs, your registration and participation in such programs, to send you communications about products and services relating to your current disease and/or medicines from Johnson & Johnson that help treat your disease, to create a portal account, as applicable, and for any optional requests you may select. In order to personalize the information you receive, the information you provide during enrollment may be combined with information received from other sources, as described in our Privacy Policy. Our <a href="#">Privacy Policy</a> further governs the use of the information you provide. You confirm that you are 18 years of age or older and that you agree to the <a href="#">Terms of Use</a>.</p>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="validateAndContinue()">Continue</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg"></div>
+                <div class="welcome-card">
+                    <h3>Welcome!</h3>
+                    <p>Tell us more about you so that we can show you support that may be relevant to your journey.</p>
+                </div>
+                <!-- Nurse Navigator Image -->
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <!-- Disclaimer Bar -->
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <!-- Footer Top: Brand column + Insurance text + Contact button -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <!-- Logo first (top) -->
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <!-- Phone second (bottom) -->
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+
+            <!-- Footer Bottom: Global footer with J&J logo, legal, copyright, links -->
+            <div class="footer-bottom">
+                <!-- J&J Logo + Legal text row -->
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+
+                <!-- Copyright + Links row -->
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1130 - Name and Email
+         ============================================ -->
+    <div class="screen" id="screen-1130">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item active">
+                <div class="stepper-number">1</div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">2</div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">3</div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">4</div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">5</div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title-sm">Get started with IMAAVY withMe</h1>
+
+                <div class="time-badge">
+                    <!-- Clock icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00A0AA" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <span>Estimated time to complete enrollment: 5 min</span>
+                </div>
+
+                <p class="page-subtitle">Now that you've been prescribed IMAAVY™, enroll in IMAAVY withMe—a support program designed with you in mind.</p>
+
+                <h2 class="section-title">Tell us about yourself.</h2>
+
+                <p class="mb-4"><strong>The information you provide should match what is listed on your health insurance documents, where applicable.</strong></p>
+
+                <div class="checkbox-group mb-6">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="consent-checkbox">
+                        <span class="checkbox-text">
+                            <span class="text-required">*</span> By providing consent, you agree to the collection and use of your Sensitive Personal Information (SPI). Examples of SPI may include, but are not limited to, health-related information. We use this information consistent with our <a href="#">Privacy Policy</a>, including to personalize the information you receive, to provide communications about products and services relating to your current disease and/or medicines from Johnson & Johnson that help treat your disease, to fulfill any requests you submit, and to research, develop, and improve our products and services.
+                        </span>
+                    </label>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">First Name <span class="text-required">*</span></label>
+                            <input type="text" class="form-input" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Last Name <span class="text-required">*</span></label>
+                            <input type="text" class="form-input" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" style="max-width: 360px;">
+                        <div class="form-field">
+                            <label class="form-label">Email <span class="text-required">*</span></label>
+                            <input type="email" class="form-input" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <p class="form-help mb-6">Your email will be used for communications relating to the IMAAVY withMe program and will be required to log in to your IMAAVY withMe Patient Portal.</p>
+
+                <!-- Other Optional Resources -->
+                <div class="resources-card">
+                    <h3 class="card-title">Other optional resources:</h3>
+
+                    <div class="resource-item">
+                        <label class="checkbox-label" style="flex: 1;">
+                            <input type="checkbox" class="checkbox-input" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Receive personalized communications.</span>
+                                <span class="checkbox-desc">Empower your journey with relevant information. Receive updates about disease education and J&J medicines.</span>
+                            </span>
+                        </label>
+                        <div class="resource-icon">
+                            <img src="assets/images/Envelope.png" alt="Email" style="width: 48px; height: 48px;">
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox-input" checked>
+                            <span class="checkbox-text">
+                                <span class="checkbox-title">Receive updates about other J&J medicines and resources.</span>
+                                <span class="checkbox-desc">Receive information about other J&J medicines and resources.</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Customize Communications Accordion -->
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">Customize your communications (optional)</span>
+                        <span class="accordion-icon">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="accordion-content">
+                        <h4 class="mb-4">What information are you most interested in receiving?</h4>
+                        <p class="mb-4"><strong>Select all that apply:</strong></p>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                <span>Tips/educational materials for managing my condition</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                <span>Cost support options</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                <span>Infusion support</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input">
+                                <span>Nurse Navigator support</span>
+                            </label>
+                        </div>
+
+                        <h4 class="mt-6 mb-4">Have you started treatment?</h4>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" name="treatment-started" value="yes" onchange="toggleTreatmentOptions(this)">
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" class="radio-input" name="treatment-started" value="no" onchange="toggleTreatmentOptions(this)">
+                                <span>No</span>
+                            </label>
+                        </div>
+
+                        <!-- Additional options shown when Yes is selected -->
+                        <div id="treatment-yes-options" style="display: none;">
+                            <h4 class="mt-6 mb-4">Which option best describes your current situation?</h4>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" class="radio-input" name="treatment-situation" value="first">
+                                    <span>I've received my first IMAAVY™ infusion</span>
+                                </label>
+                            </div>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" class="radio-input" name="treatment-situation" value="two">
+                                    <span>I've received two IMAAVY™ infusions</span>
+                                </label>
+                            </div>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" class="radio-input" name="treatment-situation" value="three-plus">
+                                    <span>I've received three or more IMAAVY™ infusions</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showScreen('1140')">Submit and Continue</button>
+                    <button class="btn btn-secondary" onclick="showScreen('1100')">Back</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <h3>Hi there!</h3>
+                    <p>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <!-- Nurse Navigator Image -->
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <!-- Footer Top: Brand column + Insurance text + Contact button -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <!-- Logo first (top) -->
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <!-- Phone second (bottom) -->
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+
+            <!-- Footer Bottom: Global footer with J&J logo, legal, copyright, links -->
+            <div class="footer-bottom">
+                <!-- J&J Logo + Legal text row -->
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+
+                <!-- Copyright + Links row -->
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1140 - Contact Information
+         ============================================ -->
+    <div class="screen" id="screen-1140">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item active">
+                <div class="stepper-number">2</div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">3</div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">4</div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">5</div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title-sm">Let's create your IMAAVY withMe profile!</h1>
+
+                <p class="page-subtitle">We will use this information to match you with your very own free, dedicated Nurse Navigator* who will reach out to you in the next 1-2 business days to provide resources and personalized support through your treatment journey.</p>
+
+                <p class="mb-4">You'll also get access to a personalized patient portal with customized resources, support, and more.</p>
+
+                <p class="mb-6" style="font-size: 13px; color: var(--text-secondary);">*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Phone <span class="text-required">*</span></label>
+                            <input type="tel" class="form-input" placeholder="(___) ___ - ____">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Phone Type <span class="text-required">*</span></label>
+                            <div class="custom-dropdown" id="dropdown-phone-type">
+                                <div class="custom-dropdown-trigger has-value">Mobile</div>
+                                <div class="custom-dropdown-menu">
+                                    <div class="custom-dropdown-option selected" data-value="mobile">Mobile</div>
+                                    <div class="custom-dropdown-option" data-value="home">Home</div>
+                                    <div class="custom-dropdown-option" data-value="work">Work</div>
+                                </div>
+                                <input type="hidden" name="phone-type" value="mobile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="form-help mb-6">The Nurse Navigator* will use this number to contact you.</p>
+
+                <div class="form-row">
+                    <div class="form-group" style="flex: 2;">
+                        <div class="form-field">
+                            <label class="form-label">Street Address <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <div class="form-field">
+                            <label class="form-label">Apartment, Suite, etc.</label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">City <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group" style="max-width: 160px;">
+                        <div class="form-field">
+                            <label class="form-label">State <span class="text-required">*</span></label>
+                            <div class="custom-dropdown" id="dropdown-state">
+                                <div class="custom-dropdown-trigger" data-placeholder="State">State</div>
+                                <div class="custom-dropdown-menu">
+                                    <div class="custom-dropdown-option" data-value="AL">AL</div>
+                                    <div class="custom-dropdown-option" data-value="CA">CA</div>
+                                    <div class="custom-dropdown-option" data-value="IL">IL</div>
+                                    <div class="custom-dropdown-option" data-value="NY">NY</div>
+                                    <div class="custom-dropdown-option" data-value="TX">TX</div>
+                                </div>
+                                <input type="hidden" name="state" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="max-width: 140px;">
+                        <div class="form-field">
+                            <label class="form-label">Zip Code <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row mb-6">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Date of Birth <span class="text-required">*</span></label>
+                            <input type="text" class="form-input" placeholder="mm / dd / yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Sex assigned at birth <span class="text-required">*</span></label>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <div class="custom-dropdown" id="dropdown-sex">
+                                    <div class="custom-dropdown-trigger" data-placeholder="Select">Select</div>
+                                    <div class="custom-dropdown-menu">
+                                        <div class="custom-dropdown-option" data-value="male">Male</div>
+                                        <div class="custom-dropdown-option" data-value="female">Female</div>
+                                    </div>
+                                    <input type="hidden" name="sex" value="">
+                                </div>
+                                <img src="assets/images/hint.png" alt="Info" class="hint-icon" style="width: 20px; height: 20px; cursor: pointer; flex-shrink: 0;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Welcome Kit Card -->
+                <div class="welcome-kit-card">
+                    <div style="flex: 1;">
+                        <h3 class="card-title">By signing up you will receive an IMAAVY withMe Welcome Kit (optional)</h3>
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox-input" checked>
+                            <span>Mail me a Welcome Kit, which includes resources to help me get started and continue my treatment journey.</span>
+                        </label>
+                    </div>
+                    <!-- Welcome kit image -->
+                    <img src="assets/images/attachment 1.png" alt="Welcome Kit" class="welcome-kit-image">
+                </div>
+
+                <!-- Text Communications -->
+                <h3 class="section-title">Permission for text communications:</h3>
+                <div class="checkbox-group mb-6">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input">
+                        <span class="checkbox-text">Yes, I would like to receive text messages. By selecting this option, I agree to receive text messages relating to the support and/or programs I selected above. Message and data rates may apply. Message frequency varies. I understand I am not required to provide my permission to receive text messages to participate in the support and/or programs or communications I have selected. Please review the text message <a href="#">Terms & Conditions</a>.</span>
+                    </label>
+                </div>
+
+                <!-- Customize Call Accordion -->
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="accordion-title">Customize your call (optional)</span>
+                        <span class="accordion-icon">
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="accordion-content">
+                        <h4 class="mb-4">What time frame do you prefer for receiving a call from your Nurse Navigator?</h4>
+                        <p class="form-help mb-4">No worries, your Nurse Navigator will reach out at your local time regardless of your time zone.</p>
+
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Morning (8:00 AM to 12:00 PM)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Afternoon (12:00 PM to 4:00 PM)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Evening (4:00 PM to 8:00 PM)</label>
+                        </div>
+                        <div class="checkbox-group mb-6">
+                            <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> No preference</label>
+                        </div>
+
+                        <h4 class="mb-4">What is your preferred language to use when speaking with your Nurse Navigator?</h4>
+                        <p class="form-help mb-4">IMAAVY withMe Nurse Navigators can work with live translators with audio or visual capabilities, so just let your Nurse Navigator know what kind of language support you may need.</p>
+
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="language" value="english"> English</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="language" value="spanish"> Spanish</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="language" value="mandarin"> Mandarin Chinese</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="language" value="asl"> American Sign Language</label>
+                        </div>
+                        <div class="radio-group mb-6">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="language" value="other"> Other</label>
+                        </div>
+
+                        <h4 class="mb-4">What is your treatment status?</h4>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="treatment-status-1140" value="received" onchange="togglePriorities1140(this)"> I have received an infusion</label>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label"><input type="radio" class="radio-input" name="treatment-status-1140" value="not-started" onchange="togglePriorities1140(this)"> I haven't started treatment yet</label>
+                        </div>
+
+                        <!-- Priorities when "received infusion" is selected -->
+                        <div id="priorities-received" style="display: none;">
+                            <h4 class="mt-6 mb-4">What are your main priorities right now? Select all that apply.</h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Understanding how my medicine works, how it can help, and what to expect</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Growing my support community and communicating with my healthcare provider</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Managing my condition and treatment schedules so I can get back to doing the things I enjoy</label>
+                            </div>
+                        </div>
+
+                        <!-- Priorities when "not started" is selected -->
+                        <div id="priorities-not-started" style="display: none;">
+                            <h4 class="mt-6 mb-4">What are your main priorities right now? Select all that apply.</h4>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Learning more about how to confidently start my medicine</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Understanding how my medicine works and how it can help</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label"><input type="checkbox" class="checkbox-input"> Addressing uncertainties or worries about starting or affording treatment</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- reCAPTCHA -->
+                <div class="recaptcha" onclick="toggleRecaptcha(this)">
+                    <div class="recaptcha-checkbox">
+                        <svg class="recaptcha-checkmark" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="3">
+                            <path d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
+                    <span class="recaptcha-text">I'm not a robot</span>
+                    <div class="recaptcha-logo">
+                        <div class="recaptcha-brand">
+                            <span style="color:#4285f4">r</span><span style="color:#ea4335">e</span><span style="color:#f9ab00">C</span><span style="color:#4285f4">A</span><span style="color:#34a853">P</span><span style="color:#ea4335">T</span><span style="color:#4285f4">C</span><span style="color:#34a853">H</span><span style="color:#f9ab00">A</span>
+                        </div>
+                        <div class="recaptcha-terms">Privacy - Terms</div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showScreen('1153')">Submit and Continue</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <h3>Hi there!</h3>
+                    <p>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <!-- Nurse Navigator Image -->
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <!-- Footer Top: Brand column + Insurance text + Contact button -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <!-- Logo first (top) -->
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <!-- Phone second (bottom) -->
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+
+            <!-- Footer Bottom: Global footer with J&J logo, legal, copyright, links -->
+            <div class="footer-bottom">
+                <!-- J&J Logo + Legal text row -->
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+
+                <!-- Copyright + Links row -->
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1153 - Insurance Coverage Type (Cost Support)
+         ============================================ -->
+    <div class="screen" id="screen-1153">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item active">
+                <div class="stepper-number">3</div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">4</div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">5</div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title">We may be able to help you save on out-of-pocket costs for IMAAVY™ treatment.</h1>
+
+                <h2 class="section-title" style="font-size: 24px; margin-bottom: 24px;">What type of insurance coverage do you have? <span class="text-required">*</span></h2>
+
+                <div class="insurance-options">
+                    <label class="insurance-option" onclick="selectInsurance(this, 'commercial')">
+                        <input type="radio" name="insurance-type" value="commercial" style="display: none;">
+                        <div class="insurance-option-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0074AD" stroke-width="1.5">
+                                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                <path d="M3 10h18"/>
+                                <circle cx="7" cy="14" r="1.5"/>
+                            </svg>
+                        </div>
+                        <div class="insurance-option-content">
+                            <span class="insurance-option-title">Commercial or Private</span>
+                            <span class="insurance-option-desc">I have insurance from my job, a family member's job, or Healthcare.gov</span>
+                        </div>
+                    </label>
+
+                    <label class="insurance-option" onclick="selectInsurance(this, 'government')">
+                        <input type="radio" name="insurance-type" value="government" style="display: none;">
+                        <div class="insurance-option-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0074AD" stroke-width="1.5">
+                                <path d="M3 21h18"/>
+                                <path d="M5 21V7l7-4 7 4v14"/>
+                                <path d="M9 21v-6h6v6"/>
+                                <path d="M10 10h.01M14 10h.01"/>
+                            </svg>
+                        </div>
+                        <div class="insurance-option-content">
+                            <span class="insurance-option-title">Government</span>
+                            <span class="insurance-option-desc">I have Medicare, Medicaid, or another government-funded program</span>
+                        </div>
+                    </label>
+
+                    <label class="insurance-option" onclick="selectInsurance(this, 'none')">
+                        <input type="radio" name="insurance-type" value="none" style="display: none;">
+                        <div class="insurance-option-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0074AD" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M6 6l12 12"/>
+                            </svg>
+                        </div>
+                        <div class="insurance-option-content">
+                            <span class="insurance-option-title">No Insurance</span>
+                        </div>
+                    </label>
+
+                    <label class="insurance-option" onclick="selectInsurance(this, 'unknown')">
+                        <input type="radio" name="insurance-type" value="unknown" style="display: none;">
+                        <div class="insurance-option-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0074AD" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path d="M9.5 9a3 3 0 0 1 5 1c0 2-3 3-3 3"/>
+                                <circle cx="12" cy="17" r=".5" fill="#0074AD"/>
+                            </svg>
+                        </div>
+                        <div class="insurance-option-content">
+                            <span class="insurance-option-title">I Don't Know</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showScreen('1150')">Continue</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <!-- Nurse Navigator Image -->
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1150 - Eligibility Requirements
+         ============================================ -->
+    <div class="screen" id="screen-1150">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item active">
+                <div class="stepper-number">4</div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">5</div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title">Let's check your eligibility for the IMAAVY withMe Savings Program.</h1>
+
+                <h2 class="section-title" style="font-size: 22px; margin-bottom: 16px;">Eligibility Requirements</h2>
+
+                <p class="mb-6">Eligible patients using commercial insurance pay as little as $0 per infusion. Program provides two separate offerings: Medicine Cost Support for the cost of IMAAVY™ medicine and Treatment Administration Cost Support for certain IMAAVY™ infusion administration and related monitoring costs. Maximum program benefit per calendar year shall apply. Offer subject to change or end without notice. Participate without sharing your income information. See <a href="#">program requirements</a>.</p>
+
+                <div class="eligibility-checkboxes">
+                    <label class="checkbox-label mb-4">
+                        <input type="checkbox" class="checkbox-input eligibility-check">
+                        <span class="checkbox-text">
+                            <strong>I have commercial or private health insurance that I will use for my IMAAVY™ treatment.</strong> Examples are commercial insurance from a former/current employer, government employee health insurance, or insurance you buy privately or through the Health Insurance Marketplace (Healthcare.gov).
+                        </span>
+                    </label>
+
+                    <label class="checkbox-label mb-4">
+                        <input type="checkbox" class="checkbox-input eligibility-check">
+                        <span class="checkbox-text">
+                            <strong>I will NOT seek payment from any government-funded healthcare program for my IMAAVY™ treatment.</strong> Examples are Medicare Parts A, B, C (also known as Medicare Advantage Plan), D, and Medicare Supplement, Medicaid, TRICARE, Department of Defense, or Veterans Administration.
+                        </span>
+                    </label>
+
+                    <label class="checkbox-label mb-6">
+                        <input type="checkbox" class="checkbox-input eligibility-check">
+                        <span class="checkbox-text">
+                            <strong>I will NOT submit any costs paid by this program as a claim to any health plan, patient assistance foundation, flexible spending account, or healthcare savings account.</strong>
+                        </span>
+                    </label>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showInsuranceModal()">Continue</button>
+                    <button class="btn btn-secondary" onclick="showScreen('1153')">Back</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Insurance Information Modal -->
+    <div class="modal-overlay" id="insuranceModal" style="display: none;">
+        <div class="modal">
+            <button class="modal-close" onclick="closeInsuranceModal()">&times;</button>
+            <h2 class="modal-title">We need your commercial or private health insurance information to verify you are eligible for the IMAAVY withMe Savings Program.</h2>
+
+            <div class="modal-section">
+                <h3 class="modal-section-title">Medical Insurance</h3>
+                <div class="form-field mb-4">
+                    <label class="form-label">Medical Insurance Provider <span class="text-required">*</span></label>
+                    <input type="text" class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Policy# <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Group# <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3 class="modal-section-title">Pharmacy/Prescription Insurance</h3>
+                <div class="form-field mb-4">
+                    <label class="form-label">Pharmacy Insurance Provider <span class="text-required">*</span></label>
+                    <input type="text" class="form-input">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">BIN <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Group# <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">Member ID <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <label class="form-label">PCN <span class="text-required">*</span></label>
+                            <input type="text" class="form-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="closeInsuranceModal(); showScreen('1262');">Continue</button>
+                <button class="btn btn-secondary" onclick="closeInsuranceModal()">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1262 - Provider Information
+         ============================================ -->
+    <div class="screen" id="screen-1262">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item active">
+                <div class="stepper-number">5</div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title">Everything looks good! To finish enrolling in cost support, we just need a little more information</h1>
+
+                <div class="provider-section">
+                    <h3 class="section-title">My Provider <span class="text-required">*</span></h3>
+                    <p class="mb-4">Please enter the information about the provider who prescribed this medicine to you.</p>
+                    <button class="btn-find-provider" onclick="showProviderInfo()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        Find My Provider
+                    </button>
+                </div>
+
+                <hr class="section-divider">
+
+                <div class="provider-section">
+                    <h3 class="section-title">My Treatment Location <span class="text-required">*</span></h3>
+                    <p class="mb-4">Please enter the information about the location where you receive treatment.</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" class="radio-input" name="treatment-location" value="same">
+                            <span>My treatment location is the same as my provider location.</span>
+                        </label>
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" class="radio-input" name="treatment-location" value="different">
+                            <span>My treatment location is not the same as my provider location.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <hr class="section-divider">
+
+                <div class="provider-section">
+                    <h3 class="section-title">How the Savings Program works</h3>
+                    <p class="body-text">Once you begin treatment with IMAAVY™, how the Savings Program payment is issued for your out-of-pocket IMAAVY™ medicine costs and certain IMAAVY™ infusion administration and related monitoring costs will be dependent on your preference and what claim documents are submitted. Payment may be issued (i) directly to your provider (if the provider is not charging you up front for the treatment costs), (ii) as funds loaded onto your Savings Program card to be used to pay your provider, or (iii) by check sent to you in the mail (a rebate form and proof of payment/receipt must be submitted for this option).</p>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showScreen('1161')">Continue</button>
+                    <button class="btn btn-secondary" onclick="showScreen('1150')">Back</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <h3>Sarah,</h3>
+                    <p>It is important for us to know who prescribed your medicine so that we can let them know that you have enrolled in the IMAAVY withMe Savings Program.</p>
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1161 - Terms & Conditions
+         ============================================ -->
+    <div class="screen" id="screen-1161">
+        <!-- Progress Stepper -->
+        <div class="stepper">
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Personalized<br>Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Contact<br>Information</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Cost Support</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Eligibility</span>
+            </div>
+            <div class="stepper-item completed">
+                <div class="stepper-number">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                        <path d="M1 5L4 8L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="stepper-label">Provider<br>Information</span>
+            </div>
+            <div class="stepper-item active">
+                <div class="stepper-number">6</div>
+                <span class="stepper-label">Terms &<br>Conditions</span>
+            </div>
+        </div>
+
+        <main class="main-container">
+            <div class="content-area">
+                <h1 class="page-title" style="font-style: italic;">Just one more step!</h1>
+
+                <p class="mb-6">By confirming and submitting this information, I certify that I have completed all of the previous sections completely, accurately, and to the best of my knowledge, and that I have read, understand, and agree to the Terms and Conditions of the IMAAVY withMe Savings Program.</p>
+
+                <div class="terms-box">
+                    <h3 class="terms-box-title">Savings Program Requirements</h3>
+                    <p class="mb-4">The IMAAVY withMe Savings Program provides 2 support offerings for eligible patients: Medicine Cost Support and Treatment Administration Cost Support.</p>
+                    <ul class="terms-list">
+                        <li>Medicine Cost Support can help eligible patients <strong>pay $0 per infusion</strong>. Maximum program benefit per calendar year shall apply. Terms expire at the end of each calendar year. Offer subject to change or end without notice. Restrictions, including monthly maximums, may apply.</li>
+                        <li>Treatment Administration Cost Support can help eligible patients save on certain out-of-pocket costs for infusion administration and related monitoring. There is a savings limit per infusion and a $7,000 maximum benefit per calendar year for Treatment Administration Cost Support. Terms expire at the end of each calendar year. Offer subject to change or end without notice, including in specific states. Not valid for residents of MA, MN, or RI.</li>
+                    </ul>
+                </div>
+
+                <div class="checkbox-group mb-6">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input" id="terms-agree">
+                        <span class="checkbox-text">I have read and agree to the program requirements for the IMAAVY withMe Savings Program. <span class="text-required">*</span></span>
+                    </label>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="showScreen('1180')">Continue</button>
+                    <button class="btn btn-secondary" onclick="showScreen('1262')">Back</button>
+                </div>
+            </div>
+
+            <div class="sidebar-area">
+                <div class="sidebar-bg sidebar-with-graphics"></div>
+                <div class="welcome-card">
+                    <h3>Sarah,</h3>
+                    <p>Before we can complete your IMAAVY withMe Savings Program enrollment, we need you to review and agree to the program eligibility requirements and use.</p>
+                    <p><strong class="phone">For questions or immediate assistance, call 888-750-8733</strong><br>Monday—Friday, 8:00 AM—11:00 PM ET</p>
+                </div>
+                <div class="nurse-container">
+                    <img src="assets/images/nurse-navigator.png" alt="Nurse Navigator" class="nurse-image">
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         SCREEN: 1180 - Welcome / Congratulations
+         ============================================ -->
+    <div class="screen" id="screen-1180">
+        <main class="main-container" style="max-width: 100%;">
+            <div class="content-area" style="max-width: 900px; padding-bottom: 40px;">
+                <h1 class="page-title">Welcome to IMAAVY withMe!</h1>
+                <p class="page-subtitle" style="font-size: 22px;">You have finished enrolling! In order to get the most out of the program, please complete the following onboarding tasks</p>
+
+                <!-- Accordion 1: Savings Card -->
+                <div class="onboarding-accordion">
+                    <div class="onboarding-accordion-header active" onclick="toggleOnboardingAccordion(this)">
+                        <span class="onboarding-number">1</span>
+                        <span class="onboarding-title">Save the savings card information</span>
+                        <span class="onboarding-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 15l-6-6-6 6"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="onboarding-accordion-content active">
+                        <p class="mb-4"><strong>Please download your card or record the details in a safe place.</strong></p>
+
+                        <div class="savings-card-container">
+                            <div class="savings-card">
+                                <div class="savings-card-header">
+                                    <img src="assets/images/logo-withme.png" alt="imaavy withMe" style="height: 20px;">
+                                    <img src="assets/images/logo-imaavy.svg" alt="imaavy" style="height: 24px;">
+                                </div>
+                                <div class="savings-card-body">
+                                    <div class="savings-card-column">
+                                        <span class="card-label" style="color: #D82663;">Medical Claims</span>
+                                        <span class="card-field">Payer ID:</span>
+                                        <span class="card-field">GROUP:</span>
+                                        <span class="card-field">ID:</span>
+                                    </div>
+                                    <div class="savings-card-column">
+                                        <span class="card-label" style="color: #D82663;">Pharmacy Claims</span>
+                                        <span class="card-field">BIN:</span>
+                                        <span class="card-field">GROUP:</span>
+                                        <span class="card-field">ID:</span>
+                                    </div>
+                                </div>
+                                <p class="card-footnote">Pharmacies: For Medical Claims, patient may elect payment by use of debit card. Call 844-468-8627. Please read the full Prescribing Information and Medication Guide for IMAAVY™ and discuss any questions you have with your doctor.</p>
+                                <p class="card-footnote"><strong>PROGRAM REQUIREMENTS APPLY.</strong></p>
+                            </div>
+                            <div class="savings-card-info">
+                                <div class="info-row">
+                                    <span class="info-label">Name:</span>
+                                    <span class="info-value">Sam Maly</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Medicine:</span>
+                                    <span class="info-value">IMAAVY™</span>
+                                </div>
+                                <h4 class="info-section-title">Medical Benefits Information</h4>
+                                <div class="info-row">
+                                    <span class="info-label">Payer ID:</span>
+                                    <span class="info-value">56155</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Group:</span>
+                                    <span class="info-value">11113723</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Member ID:</span>
+                                    <span class="info-value">57241327010</span>
+                                </div>
+                                <h4 class="info-section-title">Pharmacy Benefits Information</h4>
+                                <div class="info-row">
+                                    <span class="info-label">BIN:</span>
+                                    <span class="info-value">610020</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Group:</span>
+                                    <span class="info-value">99992553</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Member ID:</span>
+                                    <span class="info-value">65456112312</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="mb-4">This card is now active and can be used to save on your IMAAVY™ prescription. Print your card or save the card information in a safe place to use it in the future.</p>
+
+                        <div class="card-actions">
+                            <button class="btn-card-action">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9V2h12v7"/>
+                                    <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                                    <rect x="6" y="14" width="12" height="8"/>
+                                </svg>
+                                Print or Save My Card
+                            </button>
+                            <button class="btn-card-action btn-card-action-outline">Add Card to Mobile Wallet</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion 2: Patient Authorization -->
+                <div class="onboarding-accordion">
+                    <div class="onboarding-accordion-header" onclick="toggleOnboardingAccordion(this)">
+                        <span class="onboarding-number">2</span>
+                        <span class="onboarding-title">Sign a patient authorization</span>
+                        <span class="onboarding-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="onboarding-accordion-content">
+                        <p>Patient authorization content goes here...</p>
+                    </div>
+                </div>
+
+                <!-- Accordion 3: Password -->
+                <div class="onboarding-accordion">
+                    <div class="onboarding-accordion-header" onclick="toggleOnboardingAccordion(this)">
+                        <span class="onboarding-number">3</span>
+                        <span class="onboarding-title">Set up your IMAAVY withMe password</span>
+                        <span class="onboarding-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="onboarding-accordion-content">
+                        <p>Password setup content goes here...</p>
+                    </div>
+                </div>
+
+                <hr class="section-divider" style="margin: 32px 0;">
+
+                <div class="contact-info-bottom">
+                    <p><strong>For questions or immediate assistance,<br>call 888-750-8733</strong></p>
+                    <p>Monday–Friday, 8:00 AM–11:00 PM ET</p>
+                </div>
+            </div>
+        </main>
+
+        <div class="disclaimer-bar">
+            Please read the full <a href="#">Prescribing Information</a> and <a href="#">Medication Guide</a> for IMAAVY™ and discuss any questions you have with your doctor.
+        </div>
+
+        <footer class="footer">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="assets/images/jj-withme-wordmark.svg" alt="J&J withMe" class="footer-logo-img">
+                    </div>
+                    <div class="footer-phone">
+                        <img src="assets/images/phone-icon.svg" alt="" class="phone-icon">
+                        <div class="footer-phone-text">
+                            <strong>Call 888-750-8733</strong>
+                            Monday–Friday, 8:00 AM–11:00 PM ET
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>The support and resources provided by Johnson & Johnson are not intended to provide medical advice, replace a treatment plan you receive from your doctor or nurse, or serve as a reason for you to start or stay on treatment.</p>
+                    <p>Eligibility for program components may vary.</p>
+                    <p>Information about your insurance coverage, cost support options, and treatment support is given to you by service providers for Johnson & Johnson. The information you get does not require you to use any J&J product. The information about whether your treatment is covered by your health plan comes from outside sources. It is not a promise of coverage or payment. You should contact your health plan directly for the most current information. You are responsible for meeting your health plan requirements.</p>
+                </div>
+                <button class="footer-contact-btn">Contact Us</button>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal-row">
+                    <div class="footer-jj-logo-col">
+                        <img src="assets/images/johnson-johnson.png" alt="Johnson & Johnson" class="footer-jj-logo-img">
+                    </div>
+                    <div class="footer-legal">
+                        <p>This site is published by Johnson & Johnson Health Care Systems Inc., which is solely responsible for its contents. The material on this site is intended only as informational or as an educational aid and it is not intended to be taken as medical advice. The ultimate responsibility for patient care resides with a healthcare professional.</p>
+                        <p>This information is intended for the use of patients and care partners in the United States and its territories only. Laws, regulatory requirements, and medical practices for pharmaceutical products vary from market to market. The Prescribing Information included here may not be appropriate for use outside the United States and its territories.</p>
+                        <p>Third party trademarks used herein are trademarks of their respective owners.</p>
+                        <p>Last updated November 2025</p>
+                    </div>
+                </div>
+                <div class="footer-copyright-row">
+                    <span class="footer-copyright">© Johnson & Johnson and its affiliates 2025</span>
+                    <div class="footer-links-container">
+                        <div class="footer-links-row">
+                            <a href="#">Privacy policy</a>
+                            <a href="#">Legal notice</a>
+                            <a href="#">Cookie policy</a>
+                            <a href="#">Cookie settings</a>
+                        </div>
+                        <div class="footer-links-row">
+                            <a href="#">Do not sell or share my personal information</a>
+                            <a href="#">Limit the use of my sensitive personal information</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================================
+         NAVIGATION PANEL
+         ============================================ -->
+    <div id="navPanel" style="position: fixed; top: 80px; right: 20px; background: rgba(0,0,0,0.9); color: #fff; padding: 20px; border-radius: 12px; z-index: 1000; font-size: 13px; width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-height: calc(100vh - 120px); overflow-y: auto;">
+        <h3 style="margin-bottom: 16px; font-size: 14px; font-weight: 600; color: #00A0AA;">Screen Navigator</h3>
+        <button onclick="showScreen('1100')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1100 - Personalization</button>
+        <button onclick="showScreen('1130')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1130 - Name & Email</button>
+        <button onclick="showScreen('1140')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1140 - Contact Info</button>
+        <button onclick="showScreen('1153')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1153 - Insurance Type</button>
+        <button onclick="showScreen('1150')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1150 - Eligibility</button>
+        <button onclick="showScreen('1262')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1262 - Provider Info</button>
+        <button onclick="showScreen('1161')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1161 - Terms & Conditions</button>
+        <button onclick="showScreen('1180')" style="display: block; width: 100%; padding: 8px 12px; margin: 4px 0; background: #333; border: none; color: #fff; cursor: pointer; border-radius: 6px; text-align: left; font-size: 12px; transition: background 0.2s;">1180 - Welcome</button>
+        <button onclick="toggleNav()" style="display: block; width: 100%; padding: 10px 12px; margin-top: 16px; background: #D42461; border: none; color: #fff; cursor: pointer; border-radius: 6px; font-size: 12px;">Hide (Press N)</button>
+    </div>
+
+    <script>
+        const screens = ['1100', '1130', '1140', '1153', '1150', '1262', '1161', '1180'];
+        let currentScreenIndex = 0;
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            const targetScreen = document.getElementById('screen-' + screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                currentScreenIndex = screens.indexOf(screenId);
+                if (currentScreenIndex === -1) currentScreenIndex = 0;
+
+                // Scroll to very top of page after DOM update
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 0);
+            }
+        }
+
+        function prevScreen() {
+            if (currentScreenIndex > 0) {
+                currentScreenIndex--;
+                showScreen(screens[currentScreenIndex]);
+            }
+        }
+
+        function nextScreen() {
+            if (currentScreenIndex < screens.length - 1) {
+                currentScreenIndex++;
+                showScreen(screens[currentScreenIndex]);
+            }
+        }
+
+        function toggleNav() {
+            const navPanel = document.getElementById('navPanel');
+            navPanel.style.display = navPanel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleAccordion(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        function handleWhoSelect(select) {
+            if (select.value === 'caregiver') {
+                // Could navigate to caregiver flow
+            }
+            select.classList.remove('placeholder');
+        }
+
+        function validateAndContinue() {
+            const whoSelect = document.getElementById('select-who');
+            const prescriptionSelect = document.getElementById('select-prescription');
+            const ageSelect = document.getElementById('select-age');
+
+            if (whoSelect.value && prescriptionSelect.value && ageSelect.value) {
+                showScreen('1130');
+            } else {
+                alert('Please fill in all required fields');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'n' || e.key === 'N') toggleNav();
+            if (e.key === 'ArrowRight') nextScreen();
+            if (e.key === 'ArrowLeft') prevScreen();
+        });
+
+        // Add hover effects to nav buttons
+        document.querySelectorAll('#navPanel button').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                if (!this.textContent.includes('Hide')) {
+                    this.style.background = '#00A0AA';
+                }
+            });
+            btn.addEventListener('mouseleave', function() {
+                if (!this.textContent.includes('Hide')) {
+                    this.style.background = '#333';
+                }
+            });
+        });
+
+        // Custom Dropdown Functionality
+        document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
+            const trigger = dropdown.querySelector('.custom-dropdown-trigger');
+            const menu = dropdown.querySelector('.custom-dropdown-menu');
+            const options = dropdown.querySelectorAll('.custom-dropdown-option');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+
+            // Toggle dropdown on trigger click
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // Close all other dropdowns
+                document.querySelectorAll('.custom-dropdown.open').forEach(d => {
+                    if (d !== dropdown) d.classList.remove('open');
+                });
+                dropdown.classList.toggle('open');
+            });
+
+            // Handle option selection
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const value = option.dataset.value;
+                    const text = option.textContent;
+
+                    // Update trigger text and class
+                    trigger.textContent = text;
+                    trigger.classList.add('has-value');
+
+                    // Update hidden input
+                    if (hiddenInput) hiddenInput.value = value;
+
+                    // Mark option as selected
+                    options.forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    // Close dropdown
+                    dropdown.classList.remove('open');
+                });
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.custom-dropdown.open').forEach(d => {
+                d.classList.remove('open');
+            });
+        });
+
+        // Update validateAndContinue to work with custom dropdowns
+        function validateAndContinue() {
+            const whoValue = document.getElementById('select-who').value;
+            const prescriptionValue = document.getElementById('select-prescription').value;
+            const ageValue = document.getElementById('select-age').value;
+
+            if (whoValue && prescriptionValue && ageValue) {
+                showScreen('1130');
+            } else {
+                alert('Please fill in all required fields');
+            }
+        }
+
+        // Toggle treatment options based on Yes/No selection
+        function toggleTreatmentOptions(radio) {
+            const optionsDiv = document.getElementById('treatment-yes-options');
+            if (radio.value === 'yes') {
+                optionsDiv.style.display = 'block';
+            } else {
+                optionsDiv.style.display = 'none';
+            }
+        }
+
+        // Toggle reCAPTCHA checkbox
+        function toggleRecaptcha(element) {
+            element.classList.toggle('checked');
+        }
+
+        // Toggle priorities on 1140 screen based on treatment status
+        function togglePriorities1140(radio) {
+            const receivedDiv = document.getElementById('priorities-received');
+            const notStartedDiv = document.getElementById('priorities-not-started');
+
+            if (radio.value === 'received') {
+                receivedDiv.style.display = 'block';
+                notStartedDiv.style.display = 'none';
+            } else if (radio.value === 'not-started') {
+                receivedDiv.style.display = 'none';
+                notStartedDiv.style.display = 'block';
+            }
+        }
+
+        // Insurance option selection
+        function selectInsurance(element, value) {
+            // Remove selected class from all options
+            document.querySelectorAll('.insurance-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            // Check the radio input
+            element.querySelector('input[type="radio"]').checked = true;
+        }
+
+        // Insurance Modal functions
+        function showInsuranceModal() {
+            document.getElementById('insuranceModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInsuranceModal() {
+            document.getElementById('insuranceModal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking overlay
+        document.getElementById('insuranceModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInsuranceModal();
+            }
+        });
+
+        // Provider info display
+        function showProviderInfo() {
+            // In a real app, this would open a search modal
+            // For prototype, just show the screen continues
+            showScreen('1161');
+        }
+
+        // Onboarding accordion toggle
+        function toggleOnboardingAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
+
+            // Close all accordions
+            document.querySelectorAll('.onboarding-accordion-header').forEach(h => {
+                h.classList.remove('active');
+                h.nextElementSibling.classList.remove('active');
+            });
+
+            // Open clicked one if it was closed
+            if (!isActive) {
+                header.classList.add('active');
+                content.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

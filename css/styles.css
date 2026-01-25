@@ -1,0 +1,2128 @@
+/* ============================================
+   IMAAVY withMe Prototype - Pixel Perfect CSS
+   Based on Figma Design System
+   ============================================ */
+
+/* ============================================
+   JOHNSON FONT FAMILY - @font-face declarations
+   ============================================ */
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-RegularItalic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-MediumItalic.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Display';
+    src: url('../assets/fonts/JohnsonDisplay-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-RegularItalic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-MediumItalic.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Johnson Text';
+    src: url('../assets/fonts/JohnsonText-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* ============================================
+   CSS VARIABLES - Exact Figma Values
+   ============================================ */
+:root {
+    /* Brand Colors from Figma */
+    --jj-red: #EB1700;
+    --imaavy-pink: #D82663;
+    --imaavy-pink-light: #e68dac;
+    --primary-blue: #0074AD;
+    --dropdown-border: #2f9dd5;
+
+    /* Text Colors */
+    --text-primary: #222222;
+    --text-secondary: #6d6d6d;
+    --text-error: #e74040;
+    --text-white: #ffffff;
+
+    /* Background Colors */
+    --bg-white: #ffffff;
+    --bg-light: #f5f5f5;
+    --bg-help-card: #d5d5d5;
+    --bg-please-read: rgba(0, 116, 173, 0.1);
+
+    /* Border Colors */
+    --border-light: #e6e6e6;
+    --border-medium: #a39992;
+    --warm-gray-03: #e8e6e3;
+    --warm-gray-04: #d5cfc9;
+
+    /* Stepper Colors */
+    --stepper-bg: #006D77;
+    --stepper-active: #00A0AA;
+
+    /* Spacing */
+    --gap-8: 8px;
+    --gap-12: 12px;
+    --gap-16: 16px;
+    --gap-20: 20px;
+    --gap-24: 24px;
+    --gap-32: 32px;
+    --gap-40: 40px;
+    --gap-56: 56px;
+    --gap-64: 64px;
+
+    /* Border Radius */
+    --radius-20: 20px;
+    --radius-32: 32px;
+    --radius-40: 40px;
+
+    /* Typography - Johnson Font Family */
+    --font-display: 'Johnson Display', sans-serif;
+    --font-body: 'Johnson Text', sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #222222;
+    background: #ffffff;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ============================================
+   HEADER - Exact Figma Match
+   ============================================ */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 var(--gap-40);
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* Logo withMe */
+.logo-withme {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-withme-img {
+    height: 27px;
+    width: auto;
+    display: block;
+}
+
+.logo-divider {
+    width: 1px;
+    height: 50px;
+    background: #898989;
+}
+
+/* Logo Brand (imaavy with spiral) */
+.logo-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-brand-img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+/* Header Center - Page Navigator */
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.page-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-8);
+    background: #000000;
+    padding: 0 var(--gap-12);
+    height: 30px;
+    border-radius: var(--radius-32);
+}
+
+.page-nav-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-nav-number {
+    color: white;
+    font-family: 'Johnson Text', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+/* Header Right */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-link {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #6d6d6d;
+    text-decoration: none;
+}
+
+.btn-signin {
+    height: 36px;
+    padding: 0 24px;
+    background: #f8c8d4;
+    border: 2px solid #d88a9a;
+    border-radius: 20px;
+    font-family: 'Johnson Text', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #222222;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-signin:hover {
+    background: #d88a9a;
+    color: #ffffff;
+}
+
+/* ============================================
+   SCREEN LAYOUT
+   ============================================ */
+.screen {
+    display: none;
+    min-height: calc(100vh - 80px);
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Main Container - Two Column Layout */
+.main-container {
+    display: flex;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.content-area {
+    flex: 1;
+    max-width: 940px;
+    padding: 40px 40px 64px 40px;
+}
+
+.sidebar-area {
+    width: 480px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+}
+
+/* Sidebar Background - White (same as page) */
+.sidebar-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
+
+/* Sidebar with decorative graphics for stepper pages */
+.sidebar-with-graphics {
+    background: #ffffff url('../assets/images/desktop steps.png') no-repeat;
+    background-position: top right;
+    background-size: contain;
+    min-height: 100%;
+}
+
+/* Welcome Card - Speech bubble with tail pointing to nurse */
+.welcome-card {
+    position: absolute;
+    bottom: 260px;
+    right: 40px;
+    width: 280px;
+    padding: 28px 32px;
+    background: #d5d5d5;
+    border-radius: 16px;
+    z-index: 10;
+}
+
+/* Speech bubble tail pointing down-right towards nurse */
+.welcome-card::after {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    right: 60px;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 28px solid #d5d5d5;
+}
+
+.welcome-card h3 {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #3a3a3a;
+    margin-bottom: 16px;
+}
+
+.welcome-card p {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    line-height: 26px;
+    color: #3a3a3a;
+}
+
+/* Curved arrow connector from bubble to nurse */
+.welcome-card-arrow {
+    position: absolute;
+    bottom: 180px;
+    right: 120px;
+    width: 100px;
+    height: 100px;
+    z-index: 5;
+}
+
+.welcome-card-arrow svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Support Card - Figma exact: 400px width, 40px padding, 20px radius */
+.support-card {
+    position: absolute;
+    right: 40px;
+    width: 400px;
+    padding: 40px;
+    background: var(--bg-help-card);
+    border-radius: 20px;
+    z-index: 10;
+}
+
+.support-card h4 {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #3a3a3a;
+    margin-bottom: 24px;
+}
+
+.support-card p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 26px;
+    color: #3a3a3a;
+    margin-bottom: 16px;
+}
+
+.support-card p:last-child {
+    margin-bottom: 0;
+}
+
+.support-card .phone {
+    color: var(--imaavy-pink);
+}
+
+/* ============================================
+   TYPOGRAPHY - Exact Figma Values
+   ============================================ */
+
+/* H1 - Figma exact: Johnson Display Regular, 48px/52px */
+.page-title {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 52px;
+    letter-spacing: 0;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+}
+
+.page-title-sm {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 42px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+/* Page subtitle - Johnson Text Regular, 18px/26px */
+.page-subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+/* Section title - Johnson Text Bold, 20px/24px */
+.section-title {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+/* Required note - Johnson Text Regular, 16px/20px */
+.required-note {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.text-required {
+    color: var(--text-error);
+}
+
+/* Body text - Johnson Text Regular, 16px/24px */
+.body-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--text-primary);
+}
+
+/* Legal text - Johnson Text Regular, 16px/24px (links 14px/18px) */
+.legal-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+}
+
+.legal-text a {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: underline;
+}
+
+/* ============================================
+   FORMS - Exact Figma Match
+   ============================================ */
+.form-row-inline {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-20);
+    flex-wrap: wrap;
+    margin-bottom: var(--gap-24);
+}
+
+/* Inline labels - Figma exact: Johnson Text Bold, 20px/24px */
+.form-label-inline {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--text-primary);
+}
+
+/* Dropdown Select - Pill Style (inline selects) - Figma exact */
+.form-select {
+    height: auto;
+    min-height: 44px;
+    padding: 6px 44px 6px 20px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #6D6D6D;
+    background: var(--bg-white);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 22px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230074AD' d='M6 6L1 1h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.form-select.placeholder {
+    color: #6D6D6D;
+}
+
+/* When a value is selected, use darker text */
+.form-select:not(.placeholder) {
+    color: #222222;
+}
+
+.form-select:focus {
+    outline: none;
+    border: 2px solid #0074AD;
+}
+
+/* ============================================
+   CUSTOM DROPDOWN COMPONENT
+   ============================================ */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    min-height: 44px;
+    padding: 6px 44px 6px 20px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #6D6D6D;
+    background: #ffffff;
+    border: 1px solid #2f9dd5;
+    border-radius: 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+}
+
+.custom-dropdown-trigger::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #0074AD;
+}
+
+.custom-dropdown-trigger.has-value {
+    color: #222222;
+}
+
+.custom-dropdown.open .custom-dropdown-trigger {
+    border: 2px solid #0074AD;
+}
+
+/* Dropdown Menu */
+.custom-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 100%;
+    padding: 4px 0;
+    background: #ffffff;
+    border: 2px solid #0074AD;
+    border-radius: 20px;
+    z-index: 1000;
+    box-shadow: 0 100px 80px 0 rgba(102, 102, 102, 0.07),
+                0 41.778px 33.422px 0 rgba(102, 102, 102, 0.05),
+                0 22.336px 17.869px 0 rgba(102, 102, 102, 0.04),
+                0 12.522px 10.017px 0 rgba(102, 102, 102, 0.04),
+                0 6.65px 5.32px 0 rgba(102, 102, 102, 0.03),
+                0 2.767px 2.214px 0 rgba(102, 102, 102, 0.02);
+}
+
+.custom-dropdown.open .custom-dropdown-menu {
+    display: block;
+}
+
+/* Dropdown Options */
+.custom-dropdown-option {
+    display: block;
+    padding: 12px 20px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #222222;
+    cursor: pointer;
+    border-bottom: 1px solid #e8e6e3;
+}
+
+.custom-dropdown-option:last-child {
+    border-bottom: none;
+}
+
+.custom-dropdown-option:hover {
+    background: #f0f7fa;
+    border-radius: 12px;
+}
+
+.custom-dropdown-option.selected {
+    color: #0074AD;
+    font-weight: 500;
+}
+
+/* Standard Form Inputs */
+.form-row {
+    display: flex;
+    gap: var(--gap-16);
+    margin-bottom: var(--gap-16);
+}
+
+.form-group {
+    flex: 1;
+    min-width: 0;
+}
+
+.form-field {
+    position: relative;
+}
+
+/* Form Field Container - rounded with label inside */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 12px 16px;
+    height: 70px;
+    background: #ffffff;
+    border: 1px solid #2f9dd5;
+    border-radius: 16px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.form-field:focus-within {
+    border-color: #0074AD;
+    border-width: 2px;
+    padding: 11px 15px;
+}
+
+.form-label {
+    display: block;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #222222;
+}
+
+.form-label .text-required {
+    color: #e74040;
+}
+
+.form-input {
+    width: 100%;
+    height: 24px;
+    padding: 0;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #222222;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.form-input::placeholder {
+    color: #6d6d6d;
+}
+
+.form-input:focus {
+    outline: none;
+}
+
+/* Form selects inside form fields - match input styling */
+.form-field .form-select {
+    width: 100%;
+    height: 24px;
+    padding: 0;
+    padding-right: 24px;
+    border: none;
+    border-radius: 0;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #222222;
+    background: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230074AD' d='M6 7L0 1h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+}
+
+.form-field .form-select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Custom dropdown inside form fields */
+.form-field .custom-dropdown {
+    width: 100%;
+    position: static;
+}
+
+.form-field .custom-dropdown-trigger {
+    height: 24px;
+    min-height: 24px;
+    padding: 0;
+    padding-right: 20px;
+    border: none;
+    border-radius: 0;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #6D6D6D;
+    background: transparent;
+    justify-content: flex-start;
+}
+
+.form-field .custom-dropdown-trigger::after {
+    right: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #0074AD;
+}
+
+.form-field .custom-dropdown-trigger.has-value {
+    color: #222222;
+}
+
+.form-field .custom-dropdown.open .custom-dropdown-trigger {
+    border: none;
+}
+
+/* Dropdown menu appears below the form-field container */
+.form-field .custom-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    min-width: 150px;
+    padding: 8px 0;
+    z-index: 1001;
+    white-space: nowrap;
+}
+
+/* Adjust option styling inside form fields */
+.form-field .custom-dropdown-option {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 26px;
+    margin: 0 8px;
+    border-bottom: 1px solid #e8e6e3;
+}
+
+.form-field .custom-dropdown-option:last-child {
+    border-bottom: none;
+}
+
+.form-field .custom-dropdown-option:hover {
+    background: #f0f7fa;
+    border-radius: 10px;
+}
+
+.form-help {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #6d6d6d;
+    margin-top: 8px;
+}
+
+/* ============================================
+   BUTTONS - Exact Figma Match
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Primary Button - Figma exact: height 60px, radius 40px, padding 0 40px */
+.btn-primary {
+    height: 60px;
+    padding: 0 40px;
+    background: #D82663;
+    color: #ffffff;
+    border-radius: 40px;
+}
+
+.btn-primary:hover {
+    background: #c01f57;
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+    background: #e68dac;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    height: 60px;
+    padding: 0 40px;
+    background: #ffffff;
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+    border-radius: 40px;
+}
+
+/* Contact Us button - Figma exact: height 30px, radius 20px, border #d5cfc9 */
+.btn-outline {
+    height: 30px;
+    padding: 0 15px;
+    background: transparent;
+    color: var(--jj-red);
+    border: 1px solid #d5cfc9;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+/* ============================================
+   SIDEBAR - Help Card & Nurse
+   ============================================ */
+.sidebar-content {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: var(--gap-40);
+    padding-bottom: 0;
+    height: 100%;
+}
+
+.help-card {
+    width: 400px;
+    padding: 40px;
+    background: var(--bg-help-card);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.help-card-title {
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #3a3a3a;
+    margin-bottom: 24px;
+}
+
+.help-card-text {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 26px;
+    color: #3a3a3a;
+}
+
+.help-card-arrow {
+    width: 260px;
+    height: 20px;
+}
+
+.nurse-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+
+/* Nurse Image - positioned at bottom right */
+.nurse-image {
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 280px;
+    display: block;
+}
+
+/* ============================================
+   PLEASE READ / DISCLAIMER BAR
+   ============================================ */
+.please-read-bar,
+.disclaimer-bar {
+    background: rgba(0, 116, 173, 0.1);
+    padding: 16px 40px;
+    font-family: 'Johnson Text', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 27px;
+    color: #1f3769;
+}
+
+.please-read-bar p {
+    font-family: 'Johnson Text', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 27px;
+    color: #1f3769;
+}
+
+.please-read-bar a,
+.disclaimer-bar a {
+    text-decoration: underline;
+    color: #1f3769;
+}
+
+/* ============================================
+   FOOTER - Exact Figma Match
+   ============================================ */
+.footer {
+    background: #ffffff;
+}
+
+/* Footer top section - Figma: padding 32px 40px, gap 30px */
+.footer-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 32px 40px;
+}
+
+/* Footer brand column - logo at top, phone below */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    min-width: 330px;
+    flex-shrink: 0;
+}
+
+/* Footer logo - at top of brand column */
+.footer-logo {
+    margin-bottom: 32px;
+}
+
+/* Let logo display at natural aspect ratio */
+.footer-logo-img {
+    height: 46px;
+    width: auto;
+    display: block;
+}
+
+/* Phone section - icon + text */
+.footer-phone {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+/* Phone icon - 37x37px */
+.phone-icon {
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
+}
+
+.footer-phone-text {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.footer-phone-text strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+/* Footer info/insurance text - Figma: 909px max, font 14px/20px */
+.footer-info {
+    flex: 1;
+    max-width: 909px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #000000;
+}
+
+.footer-info p {
+    margin-bottom: 18px;
+}
+
+.footer-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* Contact Us button - RED border as shown in design */
+.footer-contact-btn {
+    height: 30px;
+    padding: 0 15px;
+    background: transparent;
+    border: 1px solid #EB1700;
+    border-radius: 20px;
+    color: #EB1700;
+    font-family: 'Johnson Text', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.footer-contact-btn:hover {
+    background: #EB1700;
+    color: white;
+    border-color: #EB1700;
+}
+
+/* Footer divider - Figma: 1px solid #e8e6e3 */
+.footer-divider {
+    height: 1px;
+    background: #e8e6e3;
+    margin: 0 40px;
+}
+
+/* Footer bottom/global section - Figma: padding 0 40px 40px, gap 32px */
+.footer-bottom {
+    padding: 0 40px 40px;
+}
+
+.footer-bottom-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Divider inside footer bottom */
+.footer-bottom .footer-divider {
+    margin: 0;
+    width: 100%;
+}
+
+/* J&J logo row with legal text */
+.footer-legal-row {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top: 1px solid #e8e6e3;
+}
+
+/* J&J logo column - same width as brand column above */
+.footer-jj-logo-col {
+    width: 330px;
+    min-width: 330px;
+    flex-shrink: 0;
+    padding-right: 32px;
+}
+
+/* J&J logo - 136px x 54px */
+.footer-jj-logo-img {
+    width: 136px;
+    height: auto;
+    display: block;
+}
+
+/* Footer legal text - Figma: 1060px max, font 14px/20px */
+.footer-legal {
+    flex: 1;
+    max-width: 1060px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #000000;
+}
+
+.footer-legal p {
+    margin-bottom: 18px;
+}
+
+.footer-legal p:last-child {
+    margin-bottom: 0;
+}
+
+/* Footer copyright and links row */
+.footer-copyright-row {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 32px;
+    border-top: 1px solid #e8e6e3;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #000000;
+}
+
+/* Copyright takes same width as J&J logo column */
+.footer-copyright {
+    width: 330px;
+    min-width: 330px;
+    flex-shrink: 0;
+    padding-right: 32px;
+}
+
+/* Footer links container - two rows */
+.footer-links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-links-row {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-links-row a {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.footer-links-row a:hover {
+    text-decoration: underline;
+}
+
+/* Legacy classes for backwards compatibility */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+}
+
+.footer-links a {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-top: 0;
+}
+
+/* ============================================
+   PROGRESS STEPPER
+   ============================================ */
+.stepper {
+    display: flex;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.stepper-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 14px 16px 14px 40px;
+    position: relative;
+    color: #333333;
+    background: #D5D5D5;
+    min-height: 56px;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
+    margin-left: -16px;
+}
+
+.stepper-item:first-child {
+    padding-left: 24px;
+    margin-left: 0;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+}
+
+.stepper-item:last-child {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%);
+}
+
+/* White border between inactive steps */
+.stepper-item:not(.completed):not(.active) + .stepper-item:not(.completed):not(.active) {
+    box-shadow: inset 2px 0 0 0 #ffffff;
+}
+
+/* Completed step - dark blue */
+.stepper-item.completed {
+    background: #0074AD;
+    color: white;
+}
+
+/* Active step - light blue */
+.stepper-item.active {
+    background: #2F9DD5;
+    color: white;
+}
+
+.stepper-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 14px;
+    flex-shrink: 0;
+    color: #333333;
+}
+
+.stepper-item.active .stepper-number,
+.stepper-item.completed .stepper-number {
+    background: white;
+    color: #0074AD;
+}
+
+.stepper-label {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* ============================================
+   CHECKBOXES & RADIO BUTTONS
+   ============================================ */
+.checkbox-group {
+    margin-bottom: var(--gap-16);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.checkbox-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--primary-blue);
+}
+
+/* Custom teal checkboxes for eligibility */
+.eligibility-checkboxes .checkbox-input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #0074AD;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+    position: relative;
+}
+
+.eligibility-checkboxes .checkbox-input:checked {
+    background: #ffffff;
+    border-color: #0074AD;
+}
+
+.eligibility-checkboxes .checkbox-input:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid #0074AD;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-text {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #222222;
+}
+
+.radio-group {
+    margin-bottom: var(--gap-12);
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.radio-input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-blue);
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card {
+    background: var(--bg-light);
+    border-radius: var(--radius-20);
+    padding: var(--gap-24);
+    margin-bottom: var(--gap-24);
+}
+
+.card-teal {
+    background: #e5f4f6;
+}
+
+.card-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+/* Resources Card */
+.resources-card {
+    background: var(--bg-light);
+    border-radius: var(--radius-20);
+    padding: var(--gap-24);
+    margin-bottom: var(--gap-24);
+}
+
+.resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-16);
+    padding: var(--gap-16) 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.resource-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.resource-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   ACCORDION
+   ============================================ */
+.accordion {
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    margin-bottom: var(--gap-24);
+    overflow: hidden;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+
+.accordion-header:hover {
+    background: #efefef;
+}
+
+.accordion-header.active {
+    background: var(--stepper-active);
+    color: white;
+}
+
+.accordion-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.accordion-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--stepper-active);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s;
+}
+
+.accordion-header.active .accordion-icon {
+    background: white;
+    color: var(--stepper-active);
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    display: none;
+    padding: 28px 24px;
+    background: white;
+    border-top: 1px solid var(--border-light);
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+/* ============================================
+   TIME BADGE
+   ============================================ */
+.time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6d6d6d;
+    margin-bottom: 24px;
+}
+
+.time-badge svg {
+    width: 28px;
+    height: 28px;
+    stroke: #00A0AA;
+}
+
+/* ============================================
+   RECAPTCHA
+   ============================================ */
+.recaptcha {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #f9f9f9;
+    margin-bottom: 28px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.recaptcha:hover {
+    border-color: #b0b0b0;
+}
+
+.recaptcha-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #c0c0c0;
+    border-radius: 3px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.recaptcha-checkmark {
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.recaptcha.checked .recaptcha-checkbox {
+    border-color: #4CAF50;
+}
+
+.recaptcha.checked .recaptcha-checkmark {
+    display: block;
+}
+
+.recaptcha-text {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    flex-grow: 1;
+}
+
+.recaptcha-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.recaptcha-brand {
+    font-size: 10px;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    letter-spacing: -0.5px;
+}
+
+.recaptcha-terms {
+    font-size: 8px;
+    color: #888;
+    font-family: Arial, sans-serif;
+}
+
+/* ============================================
+   WELCOME KIT CARD
+   ============================================ */
+.welcome-kit-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-24);
+    background: #e5f4f6;
+    border-radius: var(--radius-20);
+    padding: var(--gap-24);
+    margin-bottom: var(--gap-32);
+}
+
+.welcome-kit-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.mb-4 { margin-bottom: var(--gap-16); }
+.mb-6 { margin-bottom: var(--gap-24); }
+.mb-8 { margin-bottom: var(--gap-32); }
+.mt-6 { margin-top: var(--gap-24); }
+
+/* ============================================
+   INSURANCE OPTIONS (Screen 1153)
+   ============================================ */
+.insurance-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.insurance-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: #ffffff;
+    border: 1px solid #d5d5d5;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.insurance-option:hover {
+    border-color: #0074AD;
+    background: #f8fcfd;
+}
+
+.insurance-option.selected {
+    border: 2px solid #0074AD;
+    background: rgba(0, 116, 173, 0.08);
+}
+
+.insurance-option-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insurance-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.insurance-option-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222222;
+}
+
+.insurance-option-desc {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #6d6d6d;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    color: #6d6d6d;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: #f5f5f5;
+    color: #222222;
+}
+
+.modal-title {
+    font-family: 'Johnson Display', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #222222;
+    margin-bottom: 32px;
+    padding-right: 40px;
+}
+
+.modal-section {
+    margin-bottom: 32px;
+}
+
+.modal-section-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   TERMS BOX (Screen 1161)
+   ============================================ */
+.terms-box {
+    background: #f5f5f5;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.terms-box-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 16px;
+}
+
+.terms-list {
+    margin-left: 20px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #222222;
+}
+
+.terms-list li {
+    margin-bottom: 16px;
+}
+
+.terms-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   PROVIDER SECTION (Screen 1262)
+   ============================================ */
+.provider-section {
+    margin-bottom: 24px;
+}
+
+.section-divider {
+    border: none;
+    border-top: 1px solid #e8e6e3;
+    margin: 24px 0;
+}
+
+.btn-find-provider {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #ffffff;
+    border: 1px solid #0074AD;
+    border-radius: 24px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0074AD;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-find-provider:hover {
+    background: #0074AD;
+    color: #ffffff;
+}
+
+.btn-find-provider:hover svg {
+    stroke: #ffffff;
+}
+
+/* ============================================
+   ONBOARDING ACCORDION (Screen 1180)
+   ============================================ */
+.onboarding-accordion {
+    border: 1px solid #e8e6e3;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.onboarding-accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.onboarding-accordion-header:hover {
+    background: #f9f9f9;
+}
+
+.onboarding-accordion-header.active {
+    background: #0074AD;
+    color: #ffffff;
+}
+
+.onboarding-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #0074AD;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.onboarding-accordion-header.active .onboarding-number {
+    background: #ffffff;
+    color: #0074AD;
+}
+
+.onboarding-title {
+    flex: 1;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.onboarding-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.onboarding-accordion-header.active .onboarding-arrow svg {
+    stroke: #ffffff;
+}
+
+.onboarding-accordion-content {
+    display: none;
+    padding: 24px;
+    background: #ffffff;
+    border-top: 1px solid #e8e6e3;
+}
+
+.onboarding-accordion-content.active {
+    display: block;
+}
+
+/* ============================================
+   SAVINGS CARD (Screen 1180)
+   ============================================ */
+.savings-card-container {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.savings-card {
+    width: 280px;
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    flex-shrink: 0;
+}
+
+.savings-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e6e3;
+}
+
+.savings-card-body {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.savings-card-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.card-label {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.card-field {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 10px;
+    color: #6d6d6d;
+}
+
+.card-footnote {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 8px;
+    line-height: 1.4;
+    color: #6d6d6d;
+    margin-bottom: 4px;
+}
+
+.savings-card-info {
+    flex: 1;
+}
+
+.info-row {
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e6e3;
+}
+
+.info-label {
+    width: 100px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    color: #6d6d6d;
+}
+
+.info-value {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+}
+
+.info-section-title {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #222222;
+    margin: 16px 0 8px 0;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 280px;
+}
+
+.btn-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: #ffffff;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-card-action:hover {
+    background: #222222;
+    color: #ffffff;
+}
+
+.btn-card-action:hover svg {
+    stroke: #ffffff;
+}
+
+.btn-card-action-outline {
+    background: transparent;
+}
+
+/* Contact info at bottom of 1180 */
+.contact-info-bottom {
+    font-family: 'Johnson Text', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #222222;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1500px) {
+    .main-container {
+        max-width: 100%;
+    }
+
+    .content-area {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sidebar-area {
+        width: 380px;
+    }
+
+    .welcome-card,
+    .support-card {
+        width: 340px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-right .header-link {
+        display: none;
+    }
+
+    .sidebar-area {
+        display: none;
+    }
+
+    .content-area {
+        max-width: 100%;
+    }
+}
