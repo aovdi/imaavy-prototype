@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- imaavy in bold teal -->
+  <text x="0" y="24" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0074AD">imaavy</text>
+  <!-- with in lighter weight teal -->
+  <text x="85" y="24" font-family="Arial, sans-serif" font-size="26" font-weight="300" fill="#0074AD">with</text>
+  <!-- Me in pink script/italic with swirl -->
+  <text x="138" y="24" font-family="Georgia, serif" font-size="26" font-style="italic" font-weight="400" fill="#D82663">Me</text>
+  <!-- Decorative swirl extending from the e -->
+  <path d="M172 10 Q180 4, 188 10 Q192 16, 186 20 Q180 22, 178 18" stroke="#D82663" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
