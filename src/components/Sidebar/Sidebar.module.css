@@ -20,7 +20,7 @@
 .sidebarWithGraphics {
   width: 100%;
   right: 0;
-  background: var(--bg-white) url('/assets/images/desktop steps.png') no-repeat;
+  background: var(--bg-white) url('/assets/images/Desktop Steps.png') no-repeat;
   background-position: top right;
   background-size: 480px auto;
   min-height: 100%;
