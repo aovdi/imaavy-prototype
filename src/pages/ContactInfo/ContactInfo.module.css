@@ -41,24 +41,29 @@
 
 /* City/State/Zip row - Row 3 (~50/25/25 split) */
 .cityField {
-  flex: 2;
+  flex: none;
+  width: calc(50% - 10px);
 }
 
 .stateField {
-  flex: 1;
+  flex: none;
+  width: calc(25% - 15px);
 }
 
 .zipField {
-  flex: 1;
+  flex: none;
+  width: calc(25% - 15px);
 }
 
-/* DOB and Sex fields - Row 4 (50/50 split) */
+/* DOB and Sex fields - Row 4 (aligned with City | State+Zip split) */
 .dobField {
-  flex: 1;
+  flex: none;
+  width: calc(50% - 10px);
 }
 
 .sexField {
-  flex: 1;
+  flex: none;
+  width: calc(50% - 10px);
 }
 
 .sexFieldWrapper {
