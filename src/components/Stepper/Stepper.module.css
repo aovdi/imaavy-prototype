@@ -1,0 +1,86 @@
+.stepper {
+  width: 100%;
+  background: var(--bg-white);
+}
+
+.stepperInner {
+  display: flex;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.stepperItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px 14px 40px;
+  position: relative;
+  color: #333333;
+  background: var(--stepper-inactive);
+  min-height: 56px;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
+  margin-left: -16px;
+}
+
+.stepperItem:first-child {
+  padding-left: var(--gap-40);
+  margin-left: 0;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+}
+
+.stepperItem:last-child {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%);
+}
+
+/* White border between inactive steps */
+.stepperItem:not(.completed):not(.active) + .stepperItem:not(.completed):not(.active) {
+  box-shadow: inset 2px 0 0 0 var(--bg-white);
+}
+
+/* Completed step - dark blue */
+.stepperItem.completed {
+  background: var(--stepper-completed);
+  color: white;
+}
+
+/* Active step - light blue */
+.stepperItem.active {
+  background: var(--dropdown-border);
+  color: white;
+}
+
+.stepperNumber {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  margin-right: 14px;
+  flex-shrink: 0;
+  color: #333333;
+}
+
+.stepperItem.active .stepperNumber,
+.stepperItem.completed .stepperNumber {
+  background: white;
+  color: var(--stepper-completed);
+}
+
+.stepperLabel {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--font-bold);
+  line-height: 1.25;
+}
+
+/* Responsive */
+@media (max-width: 1500px) {
+  .stepperInner {
+    max-width: 100%;
+  }
+}

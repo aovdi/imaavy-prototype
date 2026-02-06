@@ -1,0 +1,160 @@
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: var(--font-normal);
+  line-height: 40px;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+}
+
+.accordionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Accordion 1 expanded content */
+.cardInstruction {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: var(--font-bold);
+  line-height: 30px;
+  color: var(--text-primary);
+  margin: 0 0 32px 0;
+}
+
+.cardLayout {
+  display: flex;
+  gap: 56px;
+  margin-bottom: 32px;
+}
+
+.cardLeftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 340px;
+  flex-shrink: 0;
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+}
+
+.cardButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 60px;
+  padding: 0 40px;
+  background: #FBE9EF;
+  border: 1px solid #D82663;
+  border-radius: 40px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: 26px;
+  color: #222222;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.cardActionBtn:hover {
+  background: #f5d5e2;
+}
+
+.cardRightColumn {
+  flex: 1;
+  min-width: 0;
+}
+
+.infoTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.infoTable td {
+  padding: 8px 0;
+  border-bottom: 1px solid #D5D5D5;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--text-primary);
+  vertical-align: top;
+}
+
+.infoLabel {
+  font-weight: var(--font-normal);
+  width: 180px;
+}
+
+.infoValue {
+  font-weight: var(--font-bold);
+}
+
+.infoSectionTitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: 26px;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.cardFooterText {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid #D5D5D5;
+  margin: 32px 0;
+  max-width: 700px;
+}
+
+/* Contact text */
+.contactText {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: 26px;
+  color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subtitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .cardLayout {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .cardLeftColumn {
+    width: 100%;
+  }
+
+  .cardImage {
+    width: 100%;
+    max-width: 340px;
+  }
+}

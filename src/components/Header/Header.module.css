@@ -1,0 +1,86 @@
+.header {
+  width: 100%;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 0 0 var(--gap-40);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.logoWithme {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoWithmeImg {
+  height: 27px;
+  width: auto;
+  display: block;
+}
+
+.logoDivider {
+  width: 1px;
+  height: 50px;
+  background: #898989;
+}
+
+.logoBrand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoBrandImg {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.headerLink {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: 18px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.headerLink:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1500px) {
+  .headerInner {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .headerLink {
+    display: none;
+  }
+}

@@ -1,0 +1,66 @@
+.insuranceOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-16);
+  margin-bottom: var(--gap-32);
+}
+
+.insuranceOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-16);
+  padding: 20px 24px;
+  background: var(--bg-white);
+  border: 1px solid var(--bg-help-card);
+  border-radius: var(--radius-16);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.insuranceOption:hover {
+  border-color: var(--primary-blue);
+  background: #f8fcfd;
+}
+
+.insuranceOption.selected {
+  border: 2px solid #80225E;
+  border-radius: 20px;
+  background: #F2E8EE;
+}
+
+.insuranceOptionIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.insuranceOptionIcon svg,
+.insuranceOptionIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.insuranceOptionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.insuranceOptionTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.insuranceOptionDesc {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 24px;
+  color: var(--text-secondary);
+}

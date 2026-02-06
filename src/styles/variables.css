@@ -1,0 +1,110 @@
+/* ============================================
+   IMAAVY withMe Design Tokens
+   Extracted from Figma Design System
+   ============================================ */
+
+:root {
+  /* Brand Colors */
+  --jj-red: #EB1700;
+  --imaavy-pink: #D82663;
+  --imaavy-pink-light: #e68dac;
+  --primary-blue: #0074AD;
+  --dropdown-border: #2f9dd5;
+
+  /* Text Colors */
+  --text-primary: #222222;
+  --text-secondary: #6d6d6d;
+  --text-error: #e74040;
+  --text-white: #ffffff;
+
+  /* Background Colors */
+  --bg-white: #ffffff;
+  --bg-light: #f5f5f5;
+  --bg-help-card: #d5d5d5;
+  --bg-please-read: rgba(0, 116, 173, 0.1);
+  --bg-teal-light: #e5f4f6;
+
+  /* Border Colors */
+  --border-light: #e6e6e6;
+  --border-medium: #a39992;
+  --warm-gray-03: #e8e6e3;
+  --warm-gray-04: #d5cfc9;
+
+  /* Stepper Colors */
+  --stepper-bg: #006D77;
+  --stepper-active: #00A0AA;
+  --stepper-completed: #0074AD;
+  --stepper-inactive: #D5D5D5;
+
+  /* Spacing (8px base unit) */
+  --gap-4: 4px;
+  --gap-8: 8px;
+  --gap-12: 12px;
+  --gap-16: 16px;
+  --gap-20: 20px;
+  --gap-24: 24px;
+  --gap-32: 32px;
+  --gap-40: 40px;
+  --gap-56: 56px;
+  --gap-64: 64px;
+
+  /* Border Radius */
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-32: 32px;
+  --radius-40: 40px;
+
+  /* Typography - Johnson Font Family */
+  --font-display: 'Johnson Display', sans-serif;
+  --font-body: 'Johnson Text', sans-serif;
+
+  /* Font Sizes */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 22px;
+  --text-3xl: 24px;
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* Shadows */
+  --shadow-dropdown: 0 100px 80px 0 rgba(102, 102, 102, 0.07),
+                     0 41.778px 33.422px 0 rgba(102, 102, 102, 0.05),
+                     0 22.336px 17.869px 0 rgba(102, 102, 102, 0.04),
+                     0 12.522px 10.017px 0 rgba(102, 102, 102, 0.04),
+                     0 6.65px 5.32px 0 rgba(102, 102, 102, 0.03),
+                     0 2.767px 2.214px 0 rgba(102, 102, 102, 0.02);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Z-index layers */
+  --z-dropdown: 1000;
+  --z-modal: 2000;
+  --z-header: 100;
+
+  /* Layout */
+  --header-height: 80px;
+  --max-content-width: 1500px;
+  --sidebar-width: 480px;
+  --content-max-width: 940px;
+}

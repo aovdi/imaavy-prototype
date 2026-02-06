@@ -1,0 +1,23 @@
+.heading {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: var(--font-normal);
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-40);
+}
+
+.bodyText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-primary);
+  max-width: 940px;
+  margin-bottom: var(--gap-56);
+}
+
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+}

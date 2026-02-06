@@ -1,0 +1,88 @@
+.checkboxGroup {
+  margin-bottom: var(--gap-24);
+}
+
+.formRow {
+  display: flex;
+  gap: var(--gap-16);
+  margin-bottom: var(--gap-16);
+}
+
+.emailField {
+  flex: 1;
+  max-width: calc(50% - 8px);
+}
+
+.formHelp {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: 18px;
+  color: var(--text-secondary);
+  margin-top: var(--gap-8);
+  margin-bottom: var(--gap-24);
+}
+
+.resourcesCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: #F2E8EE;
+  border-radius: var(--radius-12);
+  padding: var(--gap-24);
+  margin-bottom: var(--gap-24);
+}
+
+.resourcesCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-24);
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.resourceIcon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+
+.resourceIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.radioGroup {
+  margin-bottom: var(--gap-12);
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.radioInput {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-blue);
+}
+
+.treatmentOptions {
+  margin-top: var(--gap-16);
+}
+
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+  margin-top: var(--gap-32);
+}

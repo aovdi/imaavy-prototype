@@ -1,0 +1,31 @@
+.disclaimerBar {
+  width: 100%;
+}
+
+.disclaimerBarInner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--gap-16) 0 var(--gap-16) var(--gap-40);
+  background: var(--bg-please-read);
+  font-family: var(--font-body);
+  font-weight: var(--font-bold);
+  font-size: var(--text-base);
+  line-height: 27px;
+  color: #1f3769;
+}
+
+.disclaimerBar a {
+  text-decoration: underline;
+  color: #1f3769;
+}
+
+.disclaimerBar a:hover {
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1500px) {
+  .disclaimerBarInner {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,5 @@
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+  margin-top: var(--gap-32);
+}

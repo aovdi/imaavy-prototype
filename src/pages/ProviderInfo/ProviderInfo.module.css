@@ -1,0 +1,89 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionTitle {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: var(--font-bold);
+  line-height: 30px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.required {
+  color: var(--text-primary);
+}
+
+.sectionDesc {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.findProviderBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  height: 60px;
+  padding: 0 40px;
+  background: #FBE9EF;
+  border: 1px solid #D82663;
+  border-radius: 40px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-bold);
+  line-height: 26px;
+  color: #222222;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.findProviderBtn:hover {
+  background: #f5d5e2;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #D5D5D5;
+  margin: 32px 0;
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radioOption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-primary);
+}
+
+.radioInput {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #2F9DD5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+  margin-top: var(--gap-32);
+}

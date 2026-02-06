@@ -1,0 +1,232 @@
+/* ============================================
+   JOHNSON FONT FAMILY - @font-face declarations
+   ============================================ */
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Display';
+  src: url('/assets/fonts/JohnsonDisplay-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Johnson Text';
+  src: url('/assets/fonts/JohnsonText-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: var(--bg-white);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+.page-title {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-normal);
+  line-height: 52px;
+  letter-spacing: 0;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-40);
+}
+
+.page-title-sm {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-normal);
+  line-height: 42px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-24);
+}
+
+.page-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-24);
+}
+
+.section-title {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  line-height: 24px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-16);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+.text-required {
+  color: var(--text-error);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   SPACING UTILITIES
+   ============================================ */
+.mb-4 { margin-bottom: var(--gap-16); }
+.mb-6 { margin-bottom: var(--gap-24); }
+.mb-8 { margin-bottom: var(--gap-32); }
+.mt-4 { margin-top: var(--gap-16); }
+.mt-6 { margin-top: var(--gap-24); }
+.mt-8 { margin-top: var(--gap-32); }
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

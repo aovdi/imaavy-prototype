@@ -1,0 +1,140 @@
+/* Default Accordion */
+.accordion {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-20);
+  margin-bottom: var(--gap-24);
+  overflow: hidden;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #f7f7f7;
+  cursor: pointer;
+}
+
+.accordionHeader:hover {
+  background: #efefef;
+}
+
+.accordionHeader.active {
+  background: #0074AD;
+  border-radius: var(--radius-20) var(--radius-20) 0 0;
+  color: white;
+}
+
+.accordionTitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--font-medium);
+}
+
+.accordionIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #D82663;
+  border: 1px solid #D82663;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s, background 0.25s, border-color 0.25s;
+}
+
+.accordionHeader.active .accordionIcon {
+  background: white;
+  border-color: white;
+  color: #0074AD;
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  display: none;
+  padding: 28px 24px;
+  background: white;
+  border-top: 1px solid var(--border-light);
+}
+
+.accordionContent.active {
+  display: block;
+}
+
+/* Onboarding Accordion Variant */
+.onboardingAccordion {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.onboardingAccordionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-16);
+  padding: 20px 24px;
+  background: #F2F2F2;
+  border: 1px solid #F2F2F2;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background var(--transition-normal);
+}
+
+.onboardingAccordionHeader:hover {
+  background: #e8e8e8;
+}
+
+.onboardingAccordionHeader.active {
+  background: #0074AD;
+  border-color: #0074AD;
+  border-radius: 20px 20px 0 0;
+  color: var(--text-white);
+}
+
+.onboardingNumber {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+.onboardingAccordionHeader.active .onboardingNumber {
+  background: var(--text-white);
+  color: var(--primary-blue);
+}
+
+.onboardingTitle {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+}
+
+.onboardingArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-normal);
+}
+
+.onboardingAccordionHeader.active .onboardingArrow svg {
+  stroke: var(--text-white);
+}
+
+.onboardingAccordionContent {
+  display: none;
+  padding: 24px 20px 40px;
+  background: #F2F2F2;
+}
+
+.onboardingAccordionContent.active {
+  display: block;
+}

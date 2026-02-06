@@ -1,0 +1,218 @@
+.requiredNote {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 20px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-24);
+}
+
+.formRowInline {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-20);
+  flex-wrap: wrap;
+  margin-bottom: var(--gap-24);
+}
+
+.inlineGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-20);
+}
+
+.formLabelInline {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  line-height: 24px;
+  color: var(--text-primary);
+}
+
+.legalText {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: 24px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-32);
+}
+
+.legalText a {
+  font-size: var(--text-sm);
+  line-height: 18px;
+  text-decoration: underline;
+}
+
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+  margin-top: var(--gap-32);
+}
+
+/* Under-18 warning card animation */
+.fadeIn {
+  animation: fadeSlideIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Under-18 warning card */
+.under18Warning {
+  display: flex;
+  gap: var(--gap-16);
+  padding: var(--gap-20) var(--gap-24);
+  background: #FFF4F0;
+  border: 1px solid #EB1700;
+  border-radius: var(--radius-12);
+  margin-bottom: var(--gap-24);
+}
+
+.warningIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #EB1700;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  line-height: 1;
+}
+
+.warningContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-4);
+}
+
+.warningTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  line-height: 20px;
+  color: var(--text-primary);
+}
+
+.warningText {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: 18px;
+  color: var(--text-secondary);
+}
+
+/* Age requirement text */
+.ageRequirementText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  line-height: 25px;
+  color: #000000;
+  margin-bottom: var(--gap-24);
+}
+
+/* Benefits section */
+.benefitsSection {
+  margin-top: var(--gap-56);
+  margin-bottom: var(--gap-40);
+}
+
+.benefitsHeading {
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: var(--font-normal);
+  line-height: 40px;
+  color: var(--text-primary);
+  margin-bottom: var(--gap-32);
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-32);
+}
+
+.benefitItem {
+  display: flex;
+  gap: var(--gap-20);
+  align-items: flex-start;
+}
+
+.benefitIcon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.benefitIcon svg {
+  width: 50px;
+  height: 50px;
+}
+
+.benefitContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.benefitTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  line-height: 25px;
+  color: var(--text-primary);
+}
+
+.benefitDesc {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 25px;
+  color: var(--text-primary);
+}
+
+/* Phone contact row */
+.phoneContact {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-12);
+  margin-bottom: var(--gap-40);
+}
+
+.phoneIcon {
+  flex-shrink: 0;
+  width: 37px;
+  height: 35px;
+}
+
+.phoneDivider {
+  width: 3px;
+  align-self: stretch;
+  background: #D5D5D5;
+}
+
+.phoneText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 25px;
+  color: var(--text-primary);
+}
+
+.phoneNumber {
+  font-weight: var(--font-bold);
+}

@@ -1,0 +1,168 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+  line-height: 26px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+/* Primary Button */
+.primary {
+  height: 60px;
+  padding: 0 var(--gap-40);
+  background: var(--imaavy-pink);
+  color: var(--text-white);
+  border-radius: var(--radius-40);
+}
+
+.primary:hover {
+  background: #c01f57;
+}
+
+.primary.disabled,
+.primary:disabled {
+  background: var(--imaavy-pink-light);
+  cursor: not-allowed;
+}
+
+/* Secondary Button */
+.secondary {
+  height: 60px;
+  padding: 0 var(--gap-40);
+  background: #FBE9EF;
+  color: var(--text-primary);
+  border: 1px solid #D82663;
+  border-radius: var(--radius-40);
+}
+
+.secondary:hover {
+  background: #f4d1dc;
+}
+
+/* Outline Button */
+.outline {
+  height: 30px;
+  padding: 0 15px;
+  background: transparent;
+  color: var(--jj-red);
+  border: 1px solid var(--warm-gray-04);
+  border-radius: var(--radius-20);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  line-height: 20px;
+}
+
+.outline:hover {
+  background: var(--jj-red);
+  color: var(--text-white);
+  border-color: var(--jj-red);
+}
+
+/* Sign In Button */
+.signin {
+  height: 36px;
+  padding: 0 24px;
+  background: #f8c8d4;
+  border: 2px solid #d88a9a;
+  border-radius: var(--radius-20);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--text-primary);
+}
+
+.signin:hover {
+  background: #d88a9a;
+  color: var(--text-white);
+}
+
+/* Contact Button (footer) */
+.contact {
+  height: 30px;
+  padding: 0 15px;
+  background: transparent;
+  border: 1px solid var(--jj-red);
+  border-radius: var(--radius-20);
+  color: var(--jj-red);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  line-height: 20px;
+}
+
+.contact:hover {
+  background: var(--jj-red);
+  color: var(--text-white);
+}
+
+/* Find Provider Button */
+.findProvider {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--bg-white);
+  border: 1px solid var(--primary-blue);
+  border-radius: 24px;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--primary-blue);
+}
+
+.findProvider:hover {
+  background: var(--primary-blue);
+  color: var(--text-white);
+}
+
+.findProvider:hover svg {
+  stroke: var(--text-white);
+}
+
+/* Card Action Button */
+.cardAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--bg-white);
+  border: 1px solid var(--text-primary);
+  border-radius: var(--radius-8);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+}
+
+.cardAction:hover {
+  background: var(--text-primary);
+  color: var(--text-white);
+}
+
+.cardAction:hover svg {
+  stroke: var(--text-white);
+}
+
+/* Size variants */
+.small {
+  height: 36px;
+  padding: 0 20px;
+  font-size: var(--text-sm);
+}
+
+.large {
+  height: 70px;
+  padding: 0 48px;
+  font-size: var(--text-xl);
+}
+
+/* Button Group */
+.btnGroup {
+  display: flex;
+  gap: var(--gap-16);
+  margin-top: var(--gap-32);
+}
