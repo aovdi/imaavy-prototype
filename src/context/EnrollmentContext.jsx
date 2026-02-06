@@ -34,7 +34,7 @@ const initialFormData = {
   zipCode: '',
   dateOfBirth: '',
   sexAtBirth: '',
-  wantWelcomeKit: false,
+  wantWelcomeKit: true,
   textCommsConsent: false,
   callTimeMorning: false,
   callTimeAfternoon: false,
