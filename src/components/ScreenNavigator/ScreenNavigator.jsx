@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { getAllVersions } from '../../config/versions'
 import styles from './ScreenNavigator.module.css'
 
 const SCREENS = [
@@ -26,6 +27,11 @@ function ScreenNavigator({
   const [internalVisible, setInternalVisible] = useState(true)
   const navigate = useNavigate()
   const location = useLocation()
+
+  // Extract version basePath from URL (e.g. /v/base -> '/v/base')
+  const versionMatch = location.pathname.match(/^\/v\/([^/]+)/)
+  const currentVersionId = versionMatch ? versionMatch[1] : null
+  const basePath = currentVersionId ? `/v/${currentVersionId}` : ''
 
   // Support both controlled and uncontrolled modes
   const isControlled = controlledVisible !== undefined
@@ -56,7 +62,20 @@ function ScreenNavigator({
   }, [handleToggle])
 
   const handleNavigate = (route) => {
-    navigate(route)
+    navigate(basePath + route)
+  }
+
+  const handleVersionChange = (e) => {
+    const newVersionId = e.target.value
+    // Get the current page path (strip existing version prefix if any)
+    const pagePath = currentVersionId
+      ? location.pathname.replace(/^\/v\/[^/]+/, '') + location.search
+      : location.pathname + location.search
+    if (newVersionId) {
+      navigate(`/v/${newVersionId}${pagePath || '/'}`)
+    } else {
+      navigate(pagePath || '/')
+    }
   }
 
   const classes = [
@@ -70,7 +89,8 @@ function ScreenNavigator({
       <ul className={styles.screenList}>
         {SCREENS.map((screen) => {
           const currentPath = location.pathname + location.search
-          const isActive = currentPath === screen.route
+          const fullRoute = basePath + screen.route
+          const isActive = currentPath === fullRoute
           const buttonClasses = [
             styles.screenButton,
             isActive && styles.active
@@ -90,6 +110,28 @@ function ScreenNavigator({
           )
         })}
       </ul>
+
+      <div className={styles.divider} />
+
+      <button
+        className={styles.dashboardLink}
+        onClick={() => navigate('/versions')}
+        type="button"
+      >
+        Dashboard
+      </button>
+
+      <select
+        className={styles.versionSelect}
+        value={currentVersionId || ''}
+        onChange={handleVersionChange}
+      >
+        <option value="">No version</option>
+        {getAllVersions().map((v) => (
+          <option key={v.id} value={v.id}>{v.label}</option>
+        ))}
+      </select>
+
       <button
         className={styles.hideButton}
         onClick={handleToggle}
