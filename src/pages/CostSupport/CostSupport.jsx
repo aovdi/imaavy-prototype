@@ -4,20 +4,22 @@ import PageLayout from '../../components/PageLayout/PageLayout'
 import Stepper from '../../components/Stepper/Stepper'
 import Button from '../../components/Button/Button'
 import { RadioCard, RadioCardGroup } from '../../components/RadioCard/RadioCard'
+import { useVersion } from '../../context/VersionContext'
 import styles from './CostSupport.module.css'
 
 
 function CostSupport() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
+  const { version, nav } = useVersion()
 
   const handleContinue = () => {
-    navigate('/eligibility')
+    navigate(nav('/eligibility'))
   }
 
   return (
     <>
-      <Stepper currentStep={3} />
+      {version.showStepper && <Stepper currentStep={3} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Hi there!"
@@ -65,7 +67,7 @@ function CostSupport() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleContinue}>Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/contact')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/contact'))}>Back</Button>
         </div>
       </PageLayout>
     </>

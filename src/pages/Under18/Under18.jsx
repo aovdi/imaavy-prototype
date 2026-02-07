@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEnrollment } from '../../context/EnrollmentContext'
+import { useVersion } from '../../context/VersionContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
 import Button from '../../components/Button/Button'
 import styles from './Under18.module.css'
@@ -7,10 +8,11 @@ import styles from './Under18.module.css'
 function Under18() {
   const navigate = useNavigate()
   const { resetForm } = useEnrollment()
+  const { nav } = useVersion()
 
   const handleTryAgain = () => {
     resetForm()
-    navigate('/')
+    navigate(nav('/'))
   }
 
   return (

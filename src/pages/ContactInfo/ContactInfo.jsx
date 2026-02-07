@@ -7,6 +7,7 @@ import FormField from '../../components/FormField/FormField'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import Checkbox from '../../components/Checkbox/Checkbox'
 import Accordion from '../../components/Accordion/Accordion'
+import { useVersion } from '../../context/VersionContext'
 import styles from './ContactInfo.module.css'
 
 const stateOptions = [
@@ -77,9 +78,10 @@ const sexAtBirthOptions = [
 function ContactInfo() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
+  const { version, nav } = useVersion()
 
   const handleContinue = () => {
-    navigate('/cost-support')
+    navigate(nav('/cost-support'))
   }
 
   // Format phone number as user types
@@ -126,7 +128,7 @@ function ContactInfo() {
 
   return (
     <>
-      <Stepper currentStep={2} />
+      {version.showStepper && <Stepper currentStep={2} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Hi there!"
@@ -472,7 +474,7 @@ function ContactInfo() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleContinue}>Submit and Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/name-email')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/name-email'))}>Back</Button>
         </div>
       </PageLayout>
     </>

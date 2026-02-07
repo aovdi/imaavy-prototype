@@ -1,6 +1,7 @@
 import Sidebar from '../Sidebar/Sidebar'
 import DisclaimerBar from '../DisclaimerBar/DisclaimerBar'
 import Footer from '../Footer/Footer'
+import { useVersion } from '../../context/VersionContext'
 import styles from './PageLayout.module.css'
 
 function PageLayout({
@@ -13,6 +14,8 @@ function PageLayout({
   sidebarPhoneText,
   sidebarShowTimeBadge = false,
 }) {
+  const { version } = useVersion()
+
   return (
     <div className={styles.screen}>
       <main className={styles.mainContainer}>
@@ -28,6 +31,7 @@ function PageLayout({
             showPhone={sidebarShowPhone}
             phoneText={sidebarPhoneText}
             showTimeBadge={sidebarShowTimeBadge}
+            nurseImageSrc={version.nurseImage}
           />
         )}
       </main>

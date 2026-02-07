@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useEnrollment } from '../../context/EnrollmentContext'
+import { useVersion } from '../../context/VersionContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
 import Button from '../../components/Button/Button'
 import Dropdown from '../../components/Dropdown/Dropdown'
@@ -25,6 +26,7 @@ function Personalization() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const { formData, updateField, updateFields } = useEnrollment()
+  const { version, nav } = useVersion()
 
   // ScreenNavigator state presets
   useEffect(() => {
@@ -45,9 +47,9 @@ function Personalization() {
 
   const handleContinue = () => {
     if (isUnder18) {
-      navigate('/under-18')
+      navigate(nav('/under-18'))
     } else if (isValid) {
-      navigate('/name-email')
+      navigate(nav('/name-email'))
     }
   }
 

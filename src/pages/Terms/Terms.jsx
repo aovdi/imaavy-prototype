@@ -4,21 +4,23 @@ import PageLayout from '../../components/PageLayout/PageLayout'
 import Stepper from '../../components/Stepper/Stepper'
 import Button from '../../components/Button/Button'
 import Checkbox from '../../components/Checkbox/Checkbox'
+import { useVersion } from '../../context/VersionContext'
 import styles from './Terms.module.css'
 
 function Terms() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
+  const { version, nav } = useVersion()
 
   const handleSubmit = () => {
     if (formData.acceptedTerms) {
-      navigate('/confirmation')
+      navigate(nav('/confirmation'))
     }
   }
 
   return (
     <>
-      <Stepper currentStep={6} />
+      {version.showStepper && <Stepper currentStep={6} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Sarah,"
@@ -139,7 +141,7 @@ function Terms() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleSubmit} disabled={!formData.acceptedTerms}>Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/provider')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/provider'))}>Back</Button>
         </div>
       </PageLayout>
     </>

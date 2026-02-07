@@ -1,0 +1,147 @@
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 640px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #D5D5D5;
+  border-radius: 16px;
+  padding: 24px;
+  background: #fff;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.cardId {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: #F2F2F2;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.cardDescription {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.cardChanges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-medium);
+  color: #0074AD;
+  background: #E8F4FA;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.tagControl {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-medium);
+  color: #2E7D32;
+  background: #E8F5E9;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.startBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 24px;
+  background: #0074AD;
+  color: #fff;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--font-bold);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.startBtn:hover {
+  background: #005f8d;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  background: #F2F2F2;
+  color: var(--text-primary);
+  border: 1px solid #D5D5D5;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copyBtn:hover {
+  background: #e8e8e8;
+}
+
+.cardUrl {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  word-break: break-all;
+}

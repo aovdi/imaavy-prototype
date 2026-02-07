@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import PageLayout from '../../components/PageLayout/PageLayout'
 import Stepper from '../../components/Stepper/Stepper'
 import Button from '../../components/Button/Button'
+import { useVersion } from '../../context/VersionContext'
 import styles from './Eligibility.module.css'
 
 const CheckIcon = () => (
@@ -28,14 +29,15 @@ const checklistItems = [
 
 function Eligibility() {
   const navigate = useNavigate()
+  const { version, nav } = useVersion()
 
   const handleContinue = () => {
-    navigate('/provider')
+    navigate(nav('/provider'))
   }
 
   return (
     <>
-      <Stepper currentStep={4} />
+      {version.showStepper && <Stepper currentStep={4} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Hi there!"
@@ -64,7 +66,7 @@ function Eligibility() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleContinue}>Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/cost-support')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/cost-support'))}>Back</Button>
         </div>
       </PageLayout>
     </>

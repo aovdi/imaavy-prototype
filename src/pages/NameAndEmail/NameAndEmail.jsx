@@ -6,15 +6,17 @@ import Button from '../../components/Button/Button'
 import FormField from '../../components/FormField/FormField'
 import Checkbox from '../../components/Checkbox/Checkbox'
 import Accordion from '../../components/Accordion/Accordion'
+import { useVersion } from '../../context/VersionContext'
 import styles from './NameAndEmail.module.css'
 
 function NameAndEmail() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
+  const { version, nav } = useVersion()
 
   const handleSubmit = () => {
     if (formData.consentSPI && formData.firstName && formData.lastName && formData.email) {
-      navigate('/contact')
+      navigate(nav('/contact'))
     }
   }
 
@@ -22,7 +24,7 @@ function NameAndEmail() {
 
   return (
     <>
-      <Stepper currentStep={1} />
+      {version.showStepper && <Stepper currentStep={1} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Hi there!"
@@ -205,7 +207,7 @@ function NameAndEmail() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleSubmit} disabled={!isValid}>Submit and Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/'))}>Back</Button>
         </div>
       </PageLayout>
     </>

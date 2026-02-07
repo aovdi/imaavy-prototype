@@ -3,19 +3,21 @@ import { useEnrollment } from '../../context/EnrollmentContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
 import Stepper from '../../components/Stepper/Stepper'
 import Button from '../../components/Button/Button'
+import { useVersion } from '../../context/VersionContext'
 import styles from './ProviderInfo.module.css'
 
 function ProviderInfo() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
+  const { version, nav } = useVersion()
 
   const handleContinue = () => {
-    navigate('/terms')
+    navigate(nav('/terms'))
   }
 
   return (
     <>
-      <Stepper currentStep={5} />
+      {version.showStepper && <Stepper currentStep={5} />}
       <PageLayout
         sidebarVariant="withGraphics"
         sidebarWelcomeTitle="Sarah,"
@@ -78,7 +80,7 @@ function ProviderInfo() {
 
         <div className={styles.btnGroup}>
           <Button onClick={handleContinue}>Continue</Button>
-          <Button variant="secondary" onClick={() => navigate('/eligibility')}>Back</Button>
+          <Button variant="secondary" onClick={() => navigate(nav('/eligibility'))}>Back</Button>
         </div>
       </PageLayout>
     </>

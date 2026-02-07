@@ -8,6 +8,7 @@ function Sidebar({
   showPhone = false,
   phoneText = '',
   showTimeBadge = false,
+  nurseImageSrc = '/assets/images/nurse-navigator.png',
   children
 }) {
   const bgClasses = [
@@ -41,7 +42,7 @@ function Sidebar({
       </div>
 
       <div className={styles.nurseContainer}>
-        <img src="/assets/images/nurse-navigator.png" alt="Nurse Navigator" className={styles.nurseImage} />
+        <img src={nurseImageSrc} alt="Nurse Navigator" className={styles.nurseImage} />
       </div>
 
       {children}
