@@ -8,7 +8,7 @@ import styles from './Under18.module.css'
 function Under18() {
   const navigate = useNavigate()
   const { resetForm } = useEnrollment()
-  const { nav } = useVersion()
+  const { version, nav } = useVersion()
 
   const handleTryAgain = () => {
     resetForm()
@@ -21,6 +21,13 @@ function Under18() {
       sidebarWelcomeText="Tell us more about you so that we can show you support that may be relevant to your journey."
       sidebarShowPhone
       sidebarPhoneText="888-750-8733"
+      belowContentChildren={
+        !version.showSidebar ? (
+          <div className={styles.belowContent}>
+            <p className={styles.belowContentText}>Tell us more about you so that we can show you support that may be relevant to your journey.</p>
+          </div>
+        ) : undefined
+      }
     >
       <h1 className={styles.heading}>Based on your answer:</h1>
 

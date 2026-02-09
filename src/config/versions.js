@@ -1,51 +1,51 @@
 /**
- * A/B Test Version Configurations
+ * Flow Configurations
  *
- * Each version defines overrides from the base prototype.
- * To add a new version: copy a block, change the id/label/overrides.
- * To add a new variable: add a key here and read it via useVersion() in components.
+ * Flow A: Default enrollment flow (original behavior)
+ * Flow B: Simplified enrollment flow (no sidebar, no stepper, no customization accordions)
  */
 
 export const versions = {
-  base: {
-    id: 'base',
-    label: 'Base (Control)',
-    description: 'Original prototype with all default settings.',
+  'flow-a': {
+    id: 'flow-a',
+    label: 'Flow A (Default)',
+    description: 'Original enrollment flow with sidebar, stepper, and all options.',
     showStepper: true,
+    showSidebar: true,
+    showTimeBadge: true,
+    showCustomizeAccordions: true,
     nurseImage: '/assets/images/nurse-navigator.png',
-    // messaging: undefined = use default hardcoded text in each page
   },
-  'no-stepper': {
-    id: 'no-stepper',
-    label: 'No Progress Bar',
-    description: 'Stepper/progress bar hidden. TimeBadge still visible.',
+  'flow-b': {
+    id: 'flow-b',
+    label: 'Flow B',
+    description: 'Simplified flow — no sidebar, no stepper, no customization accordions.',
     showStepper: false,
-    nurseImage: '/assets/images/nurse-navigator.png',
-  },
-  'alt-image': {
-    id: 'alt-image',
-    label: 'Alternative Imagery',
-    description: 'Different sidebar nurse/person photo.',
-    showStepper: true,
-    nurseImage: '/assets/images/nurse-navigator-alt.png',
-  },
-  'alt-messaging': {
-    id: 'alt-messaging',
-    label: 'Value-Driven Messaging',
-    description: 'Different copy on Steps 0-2 emphasizing benefits and value.',
-    showStepper: true,
+    showSidebar: false,
+    showTimeBadge: false,
+    showCustomizeAccordions: false,
     nurseImage: '/assets/images/nurse-navigator.png',
     messaging: {
       personalization: {
-        // title, subtitle, etc. — pages check these and fall back to defaults
+        title: 'Get free support managing your gMG',
+        subtitle: 'This program connects you with a dedicated Nurse Navigator and covers costs related to your IMAAVY treatment. Answer a few questions to see if you qualify.',
+        disclaimer: '*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.',
       },
-      nameEmail: {},
-      contactInfo: {},
+      nameEmail: {
+        title: 'Get started with IMAAVY withMe.',
+        subtitle: 'Get a dedicated Nurse Navigator, cost support, and 24/7 portal access—all free. About 5 minutes to enroll.',
+        disclaimer: '*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.',
+      },
+      contactInfo: {
+        title: 'How should we contact you?',
+        subtitle: "We'll use this to connect you with your Nurse Navigator and send updates about your portal and benefits.",
+        disclaimer: '*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.',
+      },
     },
   },
 }
 
-export const DEFAULT_VERSION_ID = 'base'
+export const DEFAULT_VERSION_ID = 'flow-a'
 
 export function getVersion(id) {
   return versions[id] || versions[DEFAULT_VERSION_ID]

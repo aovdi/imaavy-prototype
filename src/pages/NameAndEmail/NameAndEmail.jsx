@@ -22,6 +22,10 @@ function NameAndEmail() {
 
   const isValid = formData.consentSPI && formData.firstName && formData.lastName && formData.email
 
+  const title = version.messaging?.nameEmail?.title || 'Get started with IMAAVY withMe'
+  const subtitle = version.messaging?.nameEmail?.subtitle || "Now that you've been prescribed IMAAVY™, enroll in IMAAVY withMe—a support program designed with you in mind."
+  const disclaimer = version.messaging?.nameEmail?.disclaimer
+
   return (
     <>
       {version.showStepper && <Stepper currentStep={1} />}
@@ -32,10 +36,20 @@ function NameAndEmail() {
         sidebarShowPhone={true}
         sidebarPhoneText="For questions or immediate assistance, call 888-750-8733"
         sidebarShowTimeBadge={true}
+        wideContent={!version.showSidebar}
+        belowContentChildren={
+          !version.showSidebar ? (
+            <div className={styles.belowContent}>
+              <p className={styles.belowContentText}>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+            </div>
+          ) : undefined
+        }
       >
-        <h1 className="page-title-sm">Get started with IMAAVY withMe</h1>
+        <h1 className="page-title-sm">{title}</h1>
 
-        <p className="page-subtitle">Now that you've been prescribed IMAAVY™, enroll in IMAAVY withMe—a support program designed with you in mind.</p>
+        <p className="page-subtitle">{subtitle}</p>
+
+        {disclaimer && <p className={styles.disclaimerText}><em>{disclaimer}</em></p>}
 
         <h2 className="section-title">Tell us about yourself.</h2>
 
@@ -106,104 +120,106 @@ function NameAndEmail() {
           </div>
         </div>
 
-        <Accordion title="Customize your communications (optional)">
-          <h4 className="mb-4">What information are you most interested in receiving?</h4>
-          <p className="mb-4"><strong>Select all that apply:</strong></p>
+        {version.showCustomizeAccordions !== false && (
+          <Accordion title="Customize your communications (optional)">
+            <h4 className="mb-4">What information are you most interested in receiving?</h4>
+            <p className="mb-4"><strong>Select all that apply:</strong></p>
 
-          <Checkbox
-            label="Tips/educational materials for managing my condition"
-            checked={formData.interestedInTips}
-            onChange={(e) => updateField('interestedInTips', e.target.checked)}
-          />
-          <Checkbox
-            label="Cost support options"
-            checked={formData.interestedInCostSupport}
-            onChange={(e) => updateField('interestedInCostSupport', e.target.checked)}
-          />
-          <Checkbox
-            label="Infusion support"
-            checked={formData.interestedInInfusionSupport}
-            onChange={(e) => updateField('interestedInInfusionSupport', e.target.checked)}
-          />
-          <Checkbox
-            label="Nurse Navigator support"
-            checked={formData.interestedInNurseNavigator}
-            onChange={(e) => updateField('interestedInNurseNavigator', e.target.checked)}
-          />
+            <Checkbox
+              label="Tips/educational materials for managing my condition"
+              checked={formData.interestedInTips}
+              onChange={(e) => updateField('interestedInTips', e.target.checked)}
+            />
+            <Checkbox
+              label="Cost support options"
+              checked={formData.interestedInCostSupport}
+              onChange={(e) => updateField('interestedInCostSupport', e.target.checked)}
+            />
+            <Checkbox
+              label="Infusion support"
+              checked={formData.interestedInInfusionSupport}
+              onChange={(e) => updateField('interestedInInfusionSupport', e.target.checked)}
+            />
+            <Checkbox
+              label="Nurse Navigator support"
+              checked={formData.interestedInNurseNavigator}
+              onChange={(e) => updateField('interestedInNurseNavigator', e.target.checked)}
+            />
 
-          <h4 className="mt-6 mb-4">Have you started treatment?</h4>
-          <div className={styles.radioGroup}>
-            <label className={styles.radioLabel}>
-              <input
-                type="radio"
-                className={styles.radioInput}
-                name="treatment-started"
-                value="yes"
-                checked={formData.treatmentStarted === 'yes'}
-                onChange={(e) => updateField('treatmentStarted', e.target.value)}
-              />
-              <span>Yes</span>
-            </label>
-          </div>
-          <div className={styles.radioGroup}>
-            <label className={styles.radioLabel}>
-              <input
-                type="radio"
-                className={styles.radioInput}
-                name="treatment-started"
-                value="no"
-                checked={formData.treatmentStarted === 'no'}
-                onChange={(e) => updateField('treatmentStarted', e.target.value)}
-              />
-              <span>No</span>
-            </label>
-          </div>
-
-          {formData.treatmentStarted === 'yes' && (
-            <div className={styles.treatmentOptions}>
-              <h4 className="mt-6 mb-4">Which option best describes your current situation?</h4>
-              <div className={styles.radioGroup}>
-                <label className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    className={styles.radioInput}
-                    name="treatment-situation"
-                    value="first"
-                    checked={formData.treatmentSituation === 'first'}
-                    onChange={(e) => updateField('treatmentSituation', e.target.value)}
-                  />
-                  <span>I've received my first IMAAVY™ infusion</span>
-                </label>
-              </div>
-              <div className={styles.radioGroup}>
-                <label className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    className={styles.radioInput}
-                    name="treatment-situation"
-                    value="two"
-                    checked={formData.treatmentSituation === 'two'}
-                    onChange={(e) => updateField('treatmentSituation', e.target.value)}
-                  />
-                  <span>I've received two IMAAVY™ infusions</span>
-                </label>
-              </div>
-              <div className={styles.radioGroup}>
-                <label className={styles.radioLabel}>
-                  <input
-                    type="radio"
-                    className={styles.radioInput}
-                    name="treatment-situation"
-                    value="three-plus"
-                    checked={formData.treatmentSituation === 'three-plus'}
-                    onChange={(e) => updateField('treatmentSituation', e.target.value)}
-                  />
-                  <span>I've received three or more IMAAVY™ infusions</span>
-                </label>
-              </div>
+            <h4 className="mt-6 mb-4">Have you started treatment?</h4>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  className={styles.radioInput}
+                  name="treatment-started"
+                  value="yes"
+                  checked={formData.treatmentStarted === 'yes'}
+                  onChange={(e) => updateField('treatmentStarted', e.target.value)}
+                />
+                <span>Yes</span>
+              </label>
             </div>
-          )}
-        </Accordion>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  className={styles.radioInput}
+                  name="treatment-started"
+                  value="no"
+                  checked={formData.treatmentStarted === 'no'}
+                  onChange={(e) => updateField('treatmentStarted', e.target.value)}
+                />
+                <span>No</span>
+              </label>
+            </div>
+
+            {formData.treatmentStarted === 'yes' && (
+              <div className={styles.treatmentOptions}>
+                <h4 className="mt-6 mb-4">Which option best describes your current situation?</h4>
+                <div className={styles.radioGroup}>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      className={styles.radioInput}
+                      name="treatment-situation"
+                      value="first"
+                      checked={formData.treatmentSituation === 'first'}
+                      onChange={(e) => updateField('treatmentSituation', e.target.value)}
+                    />
+                    <span>I've received my first IMAAVY™ infusion</span>
+                  </label>
+                </div>
+                <div className={styles.radioGroup}>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      className={styles.radioInput}
+                      name="treatment-situation"
+                      value="two"
+                      checked={formData.treatmentSituation === 'two'}
+                      onChange={(e) => updateField('treatmentSituation', e.target.value)}
+                    />
+                    <span>I've received two IMAAVY™ infusions</span>
+                  </label>
+                </div>
+                <div className={styles.radioGroup}>
+                  <label className={styles.radioLabel}>
+                    <input
+                      type="radio"
+                      className={styles.radioInput}
+                      name="treatment-situation"
+                      value="three-plus"
+                      checked={formData.treatmentSituation === 'three-plus'}
+                      onChange={(e) => updateField('treatmentSituation', e.target.value)}
+                    />
+                    <span>I've received three or more IMAAVY™ infusions</span>
+                  </label>
+                </div>
+              </div>
+            )}
+          </Accordion>
+        )}
 
         <div className={styles.btnGroup}>
           <Button onClick={handleSubmit} disabled={!isValid}>Submit and Continue</Button>

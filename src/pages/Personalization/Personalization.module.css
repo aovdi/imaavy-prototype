@@ -216,3 +216,23 @@
 .phoneNumber {
   font-weight: var(--font-bold);
 }
+
+.disclaimerText {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--gap-16);
+}
+
+.belowContent {
+  margin-top: var(--gap-32);
+  padding-top: var(--gap-24);
+  border-top: 1px solid #D5D5D5;
+}
+
+.belowContentText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-secondary);
+}

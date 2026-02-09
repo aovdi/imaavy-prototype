@@ -18,6 +18,10 @@
   padding: var(--gap-40) 0 var(--gap-64) var(--gap-40);
 }
 
+.contentAreaConstrained {
+  max-width: 940px;
+}
+
 /* Responsive */
 @media (max-width: 1500px) {
   .mainContainer {

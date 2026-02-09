@@ -126,6 +126,10 @@ function ContactInfo() {
     updateField('dateOfBirth', formatted)
   }
 
+  const title = version.messaging?.contactInfo?.title || "Let's create your IMAAVY withMe profile!"
+  const subtitle = version.messaging?.contactInfo?.subtitle || "We will use this information to match you with your very own free, dedicated Nurse Navigator* who will reach out to you in the next 1-2 business days to provide resources and personalized support through your treatment journey."
+  const disclaimer = version.messaging?.contactInfo?.disclaimer
+
   return (
     <>
       {version.showStepper && <Stepper currentStep={2} />}
@@ -135,14 +139,27 @@ function ContactInfo() {
         sidebarWelcomeText="If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way."
         sidebarShowPhone={true}
         sidebarPhoneText="For questions or immediate assistance, call 888-750-8733"
+        wideContent={!version.showSidebar}
+        belowContentChildren={
+          !version.showSidebar ? (
+            <div className={styles.belowContent}>
+              <p className={styles.belowContentText}>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+            </div>
+          ) : undefined
+        }
       >
-        <h1 className="page-title-sm">Let's create your IMAAVY withMe profile!</h1>
+        <h1 className="page-title-sm">{title}</h1>
 
-        <p className="page-subtitle">We will use this information to match you with your very own free, dedicated Nurse Navigator* who will reach out to you in the next 1-2 business days to provide resources and personalized support through your treatment journey.</p>
+        <p className="page-subtitle">{subtitle}</p>
 
-        <p className="mb-4">You'll also get access to a personalized patient portal with customized resources, support, and more.</p>
-
-        <p className={styles.disclaimer}>*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.</p>
+        {disclaimer ? (
+          <p className={styles.disclaimer}><em>{disclaimer}</em></p>
+        ) : (
+          <>
+            <p className="mb-4">You'll also get access to a personalized patient portal with customized resources, support, and more.</p>
+            <p className={styles.disclaimer}>*Nurse Navigators do not provide medical advice. Please ask your doctor any questions you might have about your disease and treatment.</p>
+          </>
+        )}
 
         {/* Phone Number + Phone Type Row */}
         <div className={styles.formRow}>
@@ -299,163 +316,165 @@ function ContactInfo() {
         )}
 
         {/* Customize Your Call Accordion */}
-        <Accordion title="Customize your call (optional)">
-          <div className={styles.accordionSection}>
-            {/* Time Preference */}
-            <div className={styles.preferenceGroup}>
-              <h4 className={styles.preferenceTitle}><strong>What time frame do you prefer for receiving a call from your Nurse Navigator?</strong><br />No worries, your Nurse Navigator will reach out at your local time regardless of your time zone.</h4>
-              <div className={styles.checkboxOptionsVertical}>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.callTimeMorning}
-                    onChange={(e) => updateField('callTimeMorning', e.target.checked)}
-                  />
-                  <span>Morning (8:00 AM to 12:00 PM)</span>
-                </label>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.callTimeAfternoon}
-                    onChange={(e) => updateField('callTimeAfternoon', e.target.checked)}
-                  />
-                  <span>Afternoon (12:00 PM to 4:00 PM)</span>
-                </label>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.callTimeEvening}
-                    onChange={(e) => updateField('callTimeEvening', e.target.checked)}
-                  />
-                  <span>Evening (4:00 PM to 8:00 PM)</span>
-                </label>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.callTimeNoPreference}
-                    onChange={(e) => updateField('callTimeNoPreference', e.target.checked)}
-                  />
-                  <span>No preference</span>
-                </label>
+        {version.showCustomizeAccordions !== false && (
+          <Accordion title="Customize your call (optional)">
+            <div className={styles.accordionSection}>
+              {/* Time Preference */}
+              <div className={styles.preferenceGroup}>
+                <h4 className={styles.preferenceTitle}><strong>What time frame do you prefer for receiving a call from your Nurse Navigator?</strong><br />No worries, your Nurse Navigator will reach out at your local time regardless of your time zone.</h4>
+                <div className={styles.checkboxOptionsVertical}>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.callTimeMorning}
+                      onChange={(e) => updateField('callTimeMorning', e.target.checked)}
+                    />
+                    <span>Morning (8:00 AM to 12:00 PM)</span>
+                  </label>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.callTimeAfternoon}
+                      onChange={(e) => updateField('callTimeAfternoon', e.target.checked)}
+                    />
+                    <span>Afternoon (12:00 PM to 4:00 PM)</span>
+                  </label>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.callTimeEvening}
+                      onChange={(e) => updateField('callTimeEvening', e.target.checked)}
+                    />
+                    <span>Evening (4:00 PM to 8:00 PM)</span>
+                  </label>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.callTimeNoPreference}
+                      onChange={(e) => updateField('callTimeNoPreference', e.target.checked)}
+                    />
+                    <span>No preference</span>
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Language Preference */}
-            <div className={styles.preferenceGroup}>
-              <h4 className={styles.preferenceTitle}><strong>What is your preferred language to use when speaking with your Nurse Navigator?</strong><br />IMAAVY withMe Nurse Navigators can work with live translators with audio or visual capabilities, so just let your Nurse Navigator know what kind of language support you may need.</h4>
-              <div className={styles.radioOptionsVertical}>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="languagePreference"
-                    value="english"
-                    checked={formData.languagePreference === 'english'}
-                    onChange={(e) => updateField('languagePreference', e.target.value)}
-                  />
-                  <span>English</span>
-                </label>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="languagePreference"
-                    value="spanish"
-                    checked={formData.languagePreference === 'spanish'}
-                    onChange={(e) => updateField('languagePreference', e.target.value)}
-                  />
-                  <span>Spanish</span>
-                </label>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="languagePreference"
-                    value="mandarin"
-                    checked={formData.languagePreference === 'mandarin'}
-                    onChange={(e) => updateField('languagePreference', e.target.value)}
-                  />
-                  <span>Mandarin Chinese</span>
-                </label>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="languagePreference"
-                    value="asl"
-                    checked={formData.languagePreference === 'asl'}
-                    onChange={(e) => updateField('languagePreference', e.target.value)}
-                  />
-                  <span>American Sign Language</span>
-                </label>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="languagePreference"
-                    value="other"
-                    checked={formData.languagePreference === 'other'}
-                    onChange={(e) => updateField('languagePreference', e.target.value)}
-                  />
-                  <span>Other</span>
-                </label>
+              {/* Language Preference */}
+              <div className={styles.preferenceGroup}>
+                <h4 className={styles.preferenceTitle}><strong>What is your preferred language to use when speaking with your Nurse Navigator?</strong><br />IMAAVY withMe Nurse Navigators can work with live translators with audio or visual capabilities, so just let your Nurse Navigator know what kind of language support you may need.</h4>
+                <div className={styles.radioOptionsVertical}>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="languagePreference"
+                      value="english"
+                      checked={formData.languagePreference === 'english'}
+                      onChange={(e) => updateField('languagePreference', e.target.value)}
+                    />
+                    <span>English</span>
+                  </label>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="languagePreference"
+                      value="spanish"
+                      checked={formData.languagePreference === 'spanish'}
+                      onChange={(e) => updateField('languagePreference', e.target.value)}
+                    />
+                    <span>Spanish</span>
+                  </label>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="languagePreference"
+                      value="mandarin"
+                      checked={formData.languagePreference === 'mandarin'}
+                      onChange={(e) => updateField('languagePreference', e.target.value)}
+                    />
+                    <span>Mandarin Chinese</span>
+                  </label>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="languagePreference"
+                      value="asl"
+                      checked={formData.languagePreference === 'asl'}
+                      onChange={(e) => updateField('languagePreference', e.target.value)}
+                    />
+                    <span>American Sign Language</span>
+                  </label>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="languagePreference"
+                      value="other"
+                      checked={formData.languagePreference === 'other'}
+                      onChange={(e) => updateField('languagePreference', e.target.value)}
+                    />
+                    <span>Other</span>
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Treatment Status */}
-            <div className={styles.preferenceGroup}>
-              <h4 className={styles.preferenceTitle}><strong>What is your treatment status?</strong></h4>
-              <div className={styles.radioOptionsVertical}>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="treatmentStatus"
-                    value="received"
-                    checked={formData.treatmentStatus === 'received'}
-                    onChange={(e) => updateField('treatmentStatus', e.target.value)}
-                  />
-                  <span>I have received an infusion</span>
-                </label>
-                <label className={styles.radioOption}>
-                  <input
-                    type="radio"
-                    name="treatmentStatus"
-                    value="not-started"
-                    checked={formData.treatmentStatus === 'not-started'}
-                    onChange={(e) => updateField('treatmentStatus', e.target.value)}
-                  />
-                  <span>I haven't started treatment yet</span>
-                </label>
+              {/* Treatment Status */}
+              <div className={styles.preferenceGroup}>
+                <h4 className={styles.preferenceTitle}><strong>What is your treatment status?</strong></h4>
+                <div className={styles.radioOptionsVertical}>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="treatmentStatus"
+                      value="received"
+                      checked={formData.treatmentStatus === 'received'}
+                      onChange={(e) => updateField('treatmentStatus', e.target.value)}
+                    />
+                    <span>I have received an infusion</span>
+                  </label>
+                  <label className={styles.radioOption}>
+                    <input
+                      type="radio"
+                      name="treatmentStatus"
+                      value="not-started"
+                      checked={formData.treatmentStatus === 'not-started'}
+                      onChange={(e) => updateField('treatmentStatus', e.target.value)}
+                    />
+                    <span>I haven't started treatment yet</span>
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Priorities - only shown when "I haven't started treatment yet" */}
-            {formData.treatmentStatus === 'not-started' && <div className={styles.preferenceGroup}>
-              <h4 className={styles.preferenceTitle}><strong>What are your main priorities right now? Select all that apply.</strong></h4>
-              <div className={styles.checkboxOptionsVertical}>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.priorityStartMedicine}
-                    onChange={(e) => updateField('priorityStartMedicine', e.target.checked)}
-                  />
-                  <span>Learning more about how to confidently start my medicine</span>
-                </label>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.priorityUnderstandMedicine}
-                    onChange={(e) => updateField('priorityUnderstandMedicine', e.target.checked)}
-                  />
-                  <span>Understanding how my medicine works and how it can help</span>
-                </label>
-                <label className={styles.checkboxOption}>
-                  <input
-                    type="checkbox"
-                    checked={formData.priorityUncertainties}
-                    onChange={(e) => updateField('priorityUncertainties', e.target.checked)}
-                  />
-                  <span>Addressing uncertainties or worries about starting or affording treatment</span>
-                </label>
-              </div>
-            </div>}
-          </div>
-        </Accordion>
+              {/* Priorities - only shown when "I haven't started treatment yet" */}
+              {formData.treatmentStatus === 'not-started' && <div className={styles.preferenceGroup}>
+                <h4 className={styles.preferenceTitle}><strong>What are your main priorities right now? Select all that apply.</strong></h4>
+                <div className={styles.checkboxOptionsVertical}>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.priorityStartMedicine}
+                      onChange={(e) => updateField('priorityStartMedicine', e.target.checked)}
+                    />
+                    <span>Learning more about how to confidently start my medicine</span>
+                  </label>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.priorityUnderstandMedicine}
+                      onChange={(e) => updateField('priorityUnderstandMedicine', e.target.checked)}
+                    />
+                    <span>Understanding how my medicine works and how it can help</span>
+                  </label>
+                  <label className={styles.checkboxOption}>
+                    <input
+                      type="checkbox"
+                      checked={formData.priorityUncertainties}
+                      onChange={(e) => updateField('priorityUncertainties', e.target.checked)}
+                    />
+                    <span>Addressing uncertainties or worries about starting or affording treatment</span>
+                  </label>
+                </div>
+              </div>}
+            </div>
+          </Accordion>
+        )}
 
         {/* reCAPTCHA placeholder */}
         <div className={styles.captcha}>

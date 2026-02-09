@@ -13,8 +13,8 @@ function VersionSelect() {
     <div className={styles.container}>
       <h1 className={styles.title}>Test Versions</h1>
       <p className={styles.subtitle}>
-        Select a version to start the enrollment flow for usability testing.
-        Each version applies different configurations (stepper visibility, imagery, messaging).
+        Select a flow to start the enrollment experience for usability testing.
+        Flow A is the default; Flow B removes the sidebar, stepper, and customization accordions.
       </p>
 
       <div className={styles.grid}>
@@ -28,10 +28,11 @@ function VersionSelect() {
               </div>
               <p className={styles.cardDescription}>{v.description}</p>
               <div className={styles.cardChanges}>
+                {v.showSidebar === false && <span className={styles.tag}>No sidebar</span>}
                 {!v.showStepper && <span className={styles.tag}>No stepper</span>}
-                {v.nurseImage !== '/assets/images/nurse-navigator.png' && <span className={styles.tag}>Alt image</span>}
+                {v.showCustomizeAccordions === false && <span className={styles.tag}>No accordions</span>}
                 {v.messaging && <span className={styles.tag}>Alt messaging</span>}
-                {v.id === 'base' && <span className={styles.tagControl}>Control</span>}
+                {v.id === 'flow-a' && <span className={styles.tagControl}>Default</span>}
               </div>
               <div className={styles.cardActions}>
                 <a href={`/v/${v.id}/`} className={styles.startBtn}>Start Flow</a>

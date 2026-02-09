@@ -13,17 +13,27 @@ function PageLayout({
   sidebarShowPhone = false,
   sidebarPhoneText,
   sidebarShowTimeBadge = false,
+  wideContent = false,
+  belowContentChildren,
 }) {
   const { version } = useVersion()
+
+  const sidebarVisible = showSidebar && version.showSidebar !== false
+
+  const contentClasses = [
+    styles.contentArea,
+    !sidebarVisible && !wideContent && styles.contentAreaConstrained,
+  ].filter(Boolean).join(' ')
 
   return (
     <div className={styles.screen}>
       <main className={styles.mainContainer}>
-        <div className={styles.contentArea}>
+        <div className={contentClasses}>
           {children}
+          {belowContentChildren}
         </div>
 
-        {showSidebar && (
+        {sidebarVisible && (
           <Sidebar
             variant={sidebarVariant}
             welcomeTitle={sidebarWelcomeTitle}

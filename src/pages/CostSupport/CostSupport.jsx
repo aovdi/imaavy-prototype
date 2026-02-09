@@ -26,6 +26,13 @@ function CostSupport() {
         sidebarWelcomeText="If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way."
         sidebarShowPhone={true}
         sidebarPhoneText="For questions or immediate assistance, call 888-750-8733"
+        belowContentChildren={
+          !version.showSidebar ? (
+            <div className={styles.belowContent}>
+              <p className={styles.belowContentText}>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+            </div>
+          ) : undefined
+        }
       >
         <h1 className="page-title-sm">What type of health insurance coverage do you have?</h1>
 

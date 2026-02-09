@@ -24,6 +24,13 @@ function ProviderInfo() {
         sidebarWelcomeText="It is important for us to know who prescribed your medicine so that we can let them know that you have enrolled in the IMAAVY withMe Savings Program."
         sidebarShowPhone={true}
         sidebarPhoneText="For questions or immediate assistance, call 888-750-8733"
+        belowContentChildren={
+          !version.showSidebar ? (
+            <div className={styles.belowContent}>
+              <p className={styles.belowContentText}>It is important for us to know who prescribed your medicine so that we can let them know that you have enrolled in the IMAAVY withMe Savings Program.</p>
+            </div>
+          ) : undefined
+        }
       >
         <h1 className="page-title">Everything looks good! To finish enrolling in cost support, we just need a little more information</h1>
 

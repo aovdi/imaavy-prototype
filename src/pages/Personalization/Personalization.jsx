@@ -53,12 +53,26 @@ function Personalization() {
     }
   }
 
+  const title = version.messaging?.personalization?.title || 'To find the best programs for your journey, simply answer a few questions below to begin your enrollment.'
+  const subtitle = version.messaging?.personalization?.subtitle
+  const disclaimer = version.messaging?.personalization?.disclaimer
+
   return (
     <PageLayout
       sidebarWelcomeTitle="Welcome!"
       sidebarWelcomeText="Tell us more about you so that we can show you support that may be relevant to your journey."
+      belowContentChildren={
+        !version.showSidebar ? (
+          <div className={styles.belowContent}>
+            <p className={styles.belowContentText}>Tell us more about you so that we can show you support that may be relevant to your journey.</p>
+          </div>
+        ) : undefined
+      }
     >
-      <h1 className="page-title">To find the best programs for your journey, simply answer a few questions below to begin your enrollment.</h1>
+      <h1 className="page-title">{title}</h1>
+
+      {subtitle && <p className="page-subtitle">{subtitle}</p>}
+      {disclaimer && <p className={styles.disclaimerText}><em>{disclaimer}</em></p>}
 
       <p className={styles.requiredNote}><span className="text-required">*</span> Required field</p>
 

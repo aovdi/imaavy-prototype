@@ -87,3 +87,17 @@
   gap: var(--gap-16);
   margin-top: var(--gap-32);
 }
+
+.belowContent {
+  margin-top: var(--gap-32);
+  padding-top: var(--gap-24);
+  border-top: 1px solid #D5D5D5;
+}
+
+.belowContentText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: 26px;
+  color: var(--text-secondary);
+}

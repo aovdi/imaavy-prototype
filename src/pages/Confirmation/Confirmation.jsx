@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEnrollment } from '../../context/EnrollmentContext'
+import { useVersion } from '../../context/VersionContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
 import Accordion from '../../components/Accordion/Accordion'
 import styles from './Confirmation.module.css'
@@ -7,10 +8,18 @@ import styles from './Confirmation.module.css'
 function Confirmation() {
   const navigate = useNavigate()
   const { formData, resetForm } = useEnrollment()
+  const { version } = useVersion()
 
   return (
     <PageLayout
       sidebarVariant="withGraphics"
+      belowContentChildren={
+        !version.showSidebar ? (
+          <div className={styles.belowContent}>
+            <p className={styles.belowContentText}>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+          </div>
+        ) : undefined
+      }
     >
       <h1 className="page-title">Welcome to IMAAVY withMe!</h1>
 

@@ -27,6 +27,13 @@ function Terms() {
         sidebarWelcomeText="Before we can complete your IMAAVY withMe Savings Program enrollment, we need you to review and agree to the program eligibility requirements and use."
         sidebarShowPhone={true}
         sidebarPhoneText="For questions or immediate assistance, call 888-750-8733"
+        belowContentChildren={
+          !version.showSidebar ? (
+            <div className={styles.belowContent}>
+              <p className={styles.belowContentText}>Before we can complete your IMAAVY withMe Savings Program enrollment, we need you to review and agree to the program eligibility requirements and use.</p>
+            </div>
+          ) : undefined
+        }
       >
         <h1 className="page-title">Just one more step!</h1>
 
