@@ -59,6 +59,7 @@ function Personalization() {
 
   return (
     <PageLayout
+      wideContent={!version.showSidebar}
       sidebarWelcomeTitle="Welcome!"
       sidebarWelcomeText="Tell us more about you so that we can show you support that may be relevant to your journey."
       belowContentChildren={

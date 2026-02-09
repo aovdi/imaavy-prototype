@@ -180,9 +180,9 @@ button {
 
 .page-subtitle {
   font-family: var(--font-body);
-  font-size: var(--text-lg);
+  font-size: var(--text-2xl);
   font-weight: var(--font-normal);
-  line-height: 26px;
+  line-height: 30px;
   color: var(--text-primary);
   margin-bottom: var(--gap-24);
 }
