@@ -53,6 +53,7 @@ function ScreenNavigator({
         event.key.toLowerCase() === 'n' &&
         !['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)
       ) {
+        event.preventDefault()
         handleToggle()
       }
     }
@@ -71,11 +72,7 @@ function ScreenNavigator({
     const pagePath = currentVersionId
       ? location.pathname.replace(/^\/v\/[^/]+/, '') + location.search
       : location.pathname + location.search
-    if (newVersionId) {
-      navigate(`/v/${newVersionId}${pagePath || '/'}`)
-    } else {
-      navigate(pagePath || '/')
-    }
+    navigate(`/v/${newVersionId}${pagePath || '/'}`)
   }
 
   const classes = [
@@ -123,10 +120,9 @@ function ScreenNavigator({
 
       <select
         className={styles.versionSelect}
-        value={currentVersionId || ''}
+        value={currentVersionId || 'flow-a'}
         onChange={handleVersionChange}
       >
-        <option value="">No version</option>
         {getAllVersions().map((v) => (
           <option key={v.id} value={v.id}>{v.label}</option>
         ))}

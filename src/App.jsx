@@ -63,17 +63,17 @@ function App() {
           <Route path="/v/:versionId/confirmation" element={<VersionProvider><Confirmation /></VersionProvider>} />
           <Route path="/v/:versionId/under-18" element={<VersionProvider><Under18 /></VersionProvider>} />
 
-          {/* Original routes (no version context) */}
-          <Route path="/" element={<Personalization />} />
-          <Route path="/name-email" element={<NameAndEmail />} />
-          <Route path="/contact" element={<ContactInfo />} />
-          <Route path="/cost-support" element={<CostSupport />} />
-          <Route path="/eligibility" element={<Eligibility />} />
-          <Route path="/provider" element={<ProviderInfo />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/confirmation" element={<Confirmation />} />
-          <Route path="/under-18" element={<Under18 />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Redirect bare routes to default version */}
+          <Route path="/" element={<Navigate to="/v/flow-a" replace />} />
+          <Route path="/name-email" element={<Navigate to="/v/flow-a/name-email" replace />} />
+          <Route path="/contact" element={<Navigate to="/v/flow-a/contact" replace />} />
+          <Route path="/cost-support" element={<Navigate to="/v/flow-a/cost-support" replace />} />
+          <Route path="/eligibility" element={<Navigate to="/v/flow-a/eligibility" replace />} />
+          <Route path="/provider" element={<Navigate to="/v/flow-a/provider" replace />} />
+          <Route path="/terms" element={<Navigate to="/v/flow-a/terms" replace />} />
+          <Route path="/confirmation" element={<Navigate to="/v/flow-a/confirmation" replace />} />
+          <Route path="/under-18" element={<Navigate to="/v/flow-a/under-18" replace />} />
+          <Route path="*" element={<Navigate to="/v/flow-a" replace />} />
         </Routes>
       </div>
     </EnrollmentProvider>

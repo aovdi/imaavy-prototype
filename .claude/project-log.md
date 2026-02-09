@@ -12,3 +12,22 @@
 - **Not changed:** ScreenNavigator, Header, Footer, DisclaimerBar, Sidebar, Stepper, EnrollmentContext, App.jsx routing.
 
 **Build:** Verified `npm run build` passes with no errors.
+
+## 2026-02-09: Fix Team Feedback on Flow B
+**Task:** Address 3 issues from team testing of Flow B.
+
+**Key changes:**
+- `src/styles/global.css` — Bumped `.page-subtitle` font-size from `var(--text-lg)` (18px) to `var(--text-2xl)` (22px), line-height 26px→30px. Creates clearer hierarchy: body 16px < subtitle 22px < title 36-44px.
+- `src/components/ScreenNavigator/ScreenNavigator.jsx` — Added `event.preventDefault()` in keyboard handler to stop native `<select>` type-ahead from triggering navigation when pressing "N".
+- `src/pages/Personalization/Personalization.jsx` — Added `wideContent={!version.showSidebar}` prop to PageLayout, matching NameAndEmail and ContactInfo behavior.
+
+**Build:** Verified `npm run build` passes with no errors.
+
+## 2026-02-09: Remove "No version" option, default to Flow A
+**Task:** Eliminate the confusing "No version" dropdown option and redirect bare routes to Flow A.
+
+**Key changes:**
+- `src/App.jsx` — Replaced bare routes (`/`, `/name-email`, etc.) with `<Navigate to="/v/flow-a/..." replace />` redirects. Catch-all `*` also redirects to `/v/flow-a`.
+- `src/components/ScreenNavigator/ScreenNavigator.jsx` — Removed `<option value="">No version</option>` from dropdown. Simplified `handleVersionChange` by removing the `if/else` branch for empty version. Updated dropdown value fallback to `'flow-a'`.
+
+**Build:** Verified `npm run build` passes with no errors.
