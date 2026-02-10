@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEnrollment } from '../../context/EnrollmentContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
@@ -79,8 +80,19 @@ function ContactInfo() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
   const { version, nav } = useVersion()
+  const [touched, setTouched] = useState({
+    phone: false, phoneType: false, streetAddress: false, city: false,
+    state: false, zipCode: false, dateOfBirth: false, sexAtBirth: false
+  })
+
+  const markTouched = (field) => setTouched(prev => ({ ...prev, [field]: true }))
+  const showError = (field) => touched[field] && !formData[field]
+
+  const isValid = formData.phone && formData.phoneType && formData.streetAddress &&
+    formData.city && formData.state && formData.zipCode && formData.dateOfBirth && formData.sexAtBirth
 
   const handleContinue = () => {
+    if (!isValid) return
     navigate(nav('/cost-support'))
   }
 
@@ -170,6 +182,8 @@ function ContactInfo() {
               required={true}
               value={formData.phone}
               onChange={handlePhoneChange}
+              onBlur={() => markTouched('phone')}
+              error={showError('phone') ? 'Phone is required.' : ''}
               placeholder="(___) ___ - ____"
             />
           </div>
@@ -181,6 +195,8 @@ function ContactInfo() {
               options={phoneTypeOptions}
               value={formData.phoneType}
               onChange={(value) => updateField('phoneType', value)}
+              onBlur={() => markTouched('phoneType')}
+              error={showError('phoneType') ? 'Phone Type is required.' : ''}
               placeholder="Select type"
             />
           </div>
@@ -196,6 +212,8 @@ function ContactInfo() {
               required={true}
               value={formData.streetAddress}
               onChange={(e) => updateField('streetAddress', e.target.value)}
+              onBlur={() => markTouched('streetAddress')}
+              error={showError('streetAddress') ? 'Street Address is required.' : ''}
             />
           </div>
           <div className={styles.apartmentField}>
@@ -215,6 +233,8 @@ function ContactInfo() {
               required={true}
               value={formData.city}
               onChange={(e) => updateField('city', e.target.value)}
+              onBlur={() => markTouched('city')}
+              error={showError('city') ? 'City is required.' : ''}
             />
           </div>
           <div className={styles.stateField}>
@@ -225,6 +245,8 @@ function ContactInfo() {
               options={stateOptions}
               value={formData.state}
               onChange={(value) => updateField('state', value)}
+              onBlur={() => markTouched('state')}
+              error={showError('state') ? 'State is required.' : ''}
               placeholder="Select state"
             />
           </div>
@@ -234,6 +256,8 @@ function ContactInfo() {
               required={true}
               value={formData.zipCode}
               onChange={(e) => updateField('zipCode', e.target.value)}
+              onBlur={() => markTouched('zipCode')}
+              error={showError('zipCode') ? 'Zip Code is required.' : ''}
             />
           </div>
         </div>
@@ -246,6 +270,8 @@ function ContactInfo() {
               required={true}
               value={formData.dateOfBirth}
               onChange={handleDateOfBirthChange}
+              onBlur={() => markTouched('dateOfBirth')}
+              error={showError('dateOfBirth') ? 'Date of Birth is required.' : ''}
               placeholder="mm / dd / yyyy"
             />
           </div>
@@ -258,6 +284,8 @@ function ContactInfo() {
                 options={sexAtBirthOptions}
                 value={formData.sexAtBirth}
                 onChange={(value) => updateField('sexAtBirth', value)}
+                onBlur={() => markTouched('sexAtBirth')}
+                error={showError('sexAtBirth') ? 'Sex assigned at birth is required.' : ''}
                 placeholder="Select"
               />
               <img src="/assets/images/Hint.png" alt="Info" className={styles.infoIcon} title="This information helps us provide appropriate health resources" />
@@ -492,7 +520,7 @@ function ContactInfo() {
         </div>
 
         <div className={styles.btnGroup}>
-          <Button onClick={handleContinue}>Submit and Continue</Button>
+          <Button onClick={handleContinue} disabled={!isValid}>Submit and Continue</Button>
           <Button variant="secondary" onClick={() => navigate(nav('/name-email'))}>Back</Button>
         </div>
       </PageLayout>

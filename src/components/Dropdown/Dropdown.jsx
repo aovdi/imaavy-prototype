@@ -5,6 +5,7 @@ function Dropdown({
   options = [],
   value,
   onChange,
+  onBlur,
   placeholder = 'Select an option',
   label,
   required = false,
@@ -14,13 +15,18 @@ function Dropdown({
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef(null)
+  const onBlurRef = useRef(onBlur)
+  onBlurRef.current = onBlur
 
   const selectedOption = options.find(opt => opt.value === value)
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false)
+        setIsOpen((wasOpen) => {
+          if (wasOpen) onBlurRef.current?.()
+          return false
+        })
       }
     }
 
@@ -31,6 +37,7 @@ function Dropdown({
   const handleSelect = (optionValue) => {
     onChange(optionValue)
     setIsOpen(false)
+    onBlur?.()
   }
 
   const containerClasses = [
@@ -48,33 +55,35 @@ function Dropdown({
 
   if (variant === 'field') {
     return (
-      <div className={styles.formField}>
-        {label && (
-          <label className={styles.formLabel}>
-            {label}
-            {required && <span className={styles.required}>*</span>}
-          </label>
-        )}
-        <div className={containerClasses} ref={dropdownRef}>
-          <div
-            className={triggerClasses}
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {selectedOption ? selectedOption.label : placeholder}
-          </div>
-          {isOpen && (
-            <div className={styles.customDropdownMenu}>
-              {options.map((option) => (
-                <div
-                  key={option.value}
-                  className={`${styles.customDropdownOption} ${value === option.value ? styles.selected : ''}`}
-                  onClick={() => handleSelect(option.value)}
-                >
-                  {option.label}
-                </div>
-              ))}
-            </div>
+      <div className={styles.formGroup}>
+        <div className={`${styles.formField} ${error ? styles.formFieldError : ''}`}>
+          {label && (
+            <label className={styles.formLabel}>
+              {label}
+              {required && <span className={styles.required}>*</span>}
+            </label>
           )}
+          <div className={containerClasses} ref={dropdownRef}>
+            <div
+              className={triggerClasses}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {selectedOption ? selectedOption.label : placeholder}
+            </div>
+            {isOpen && (
+              <div className={styles.customDropdownMenu}>
+                {options.map((option) => (
+                  <div
+                    key={option.value}
+                    className={`${styles.customDropdownOption} ${value === option.value ? styles.selected : ''}`}
+                    onClick={() => handleSelect(option.value)}
+                  >
+                    {option.label}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
         {error && <p className={styles.formError}>{error}</p>}
       </div>

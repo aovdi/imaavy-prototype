@@ -31,3 +31,14 @@
 - `src/components/ScreenNavigator/ScreenNavigator.jsx` — Removed `<option value="">No version</option>` from dropdown. Simplified `handleVersionChange` by removing the `if/else` branch for empty version. Updated dropdown value fallback to `'flow-a'`.
 
 **Build:** Verified `npm run build` passes with no errors.
+
+## 2026-02-09: Add on-blur field validation to Steps 2 & 3
+**Task:** Show inline error messages on empty required fields when they lose focus. Disable Continue button until all required fields are filled.
+
+**Key changes:**
+- `src/components/Checkbox/Checkbox.jsx` + CSS — Added `error` prop; renders red error text below checkbox with `.checkboxError` style.
+- `src/components/Dropdown/Dropdown.jsx` — Added `onBlur` prop; fires when dropdown closes via click-outside or after selection. Used ref to avoid stale closure in useEffect.
+- `src/pages/NameAndEmail/NameAndEmail.jsx` — Added `touched` state + `markTouched`/`showError` helpers. Wired `onBlur` + `error` to First Name, Last Name, Email FormFields and consent Checkbox. Consent marks touched on uncheck.
+- `src/pages/ContactInfo/ContactInfo.jsx` — Added `touched` state for 8 required fields. Wired `onBlur` + `error` to all required FormFields (Phone, Street Address, City, Zip Code, Date of Birth) and Dropdowns (Phone Type, State, Sex at Birth). Added `isValid` check + `disabled={!isValid}` on Continue button.
+
+**Build:** Verified `npm run build` passes with no errors.

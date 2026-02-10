@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEnrollment } from '../../context/EnrollmentContext'
 import PageLayout from '../../components/PageLayout/PageLayout'
@@ -13,6 +14,10 @@ function NameAndEmail() {
   const navigate = useNavigate()
   const { formData, updateField } = useEnrollment()
   const { version, nav } = useVersion()
+  const [touched, setTouched] = useState({ consentSPI: false, firstName: false, lastName: false, email: false })
+
+  const markTouched = (field) => setTouched(prev => ({ ...prev, [field]: true }))
+  const showError = (field) => touched[field] && !formData[field]
 
   const handleSubmit = () => {
     if (formData.consentSPI && formData.firstName && formData.lastName && formData.email) {
@@ -58,8 +63,12 @@ function NameAndEmail() {
         <div className={styles.checkboxGroup}>
           <Checkbox
             checked={formData.consentSPI}
-            onChange={(e) => updateField('consentSPI', e.target.checked)}
+            onChange={(e) => {
+              updateField('consentSPI', e.target.checked)
+              if (!e.target.checked) markTouched('consentSPI')
+            }}
             required={true}
+            error={showError('consentSPI') ? 'This field is required' : ''}
             label={
               <>
                 By providing consent, you agree to the collection and use of your Sensitive Personal Information (SPI). Examples of SPI may include, but are not limited to, health-related information. We use this information consistent with our <a href="#">Privacy Policy</a>, including to personalize the information you receive, to provide communications about products and services relating to your current disease and/or medicines from Johnson & Johnson that help treat your disease, to fulfill any requests you submit, and to research, develop, and improve our products and services.
@@ -74,12 +83,16 @@ function NameAndEmail() {
             required={true}
             value={formData.firstName}
             onChange={(e) => updateField('firstName', e.target.value)}
+            onBlur={() => markTouched('firstName')}
+            error={showError('firstName') ? 'First Name is required.' : ''}
           />
           <FormField
             label="Last Name"
             required={true}
             value={formData.lastName}
             onChange={(e) => updateField('lastName', e.target.value)}
+            onBlur={() => markTouched('lastName')}
+            error={showError('lastName') ? 'Last Name is required.' : ''}
           />
         </div>
 
@@ -91,6 +104,8 @@ function NameAndEmail() {
               required={true}
               value={formData.email}
               onChange={(e) => updateField('email', e.target.value)}
+              onBlur={() => markTouched('email')}
+              error={showError('email') ? 'Email is required.' : ''}
             />
           </div>
         </div>

@@ -7,6 +7,7 @@ function Checkbox({
   checked = false,
   onChange,
   required = false,
+  error = '',
   variant = 'default', // 'default', 'eligibility', 'resource'
   icon,
   name,
@@ -41,6 +42,7 @@ function Checkbox({
         </span>
       </label>
       {icon && <div className={styles.resourceIcon}>{icon}</div>}
+      {error && <p className={styles.checkboxError}>{error}</p>}
     </div>
   )
 }
