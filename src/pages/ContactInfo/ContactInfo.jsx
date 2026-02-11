@@ -156,6 +156,15 @@ function ContactInfo() {
           !version.showSidebar ? (
             <div className={styles.belowContent}>
               <p className={styles.belowContentText}>If you have any questions about IMAAVY withMe or your treatment, we're here to help you every step of the way.</p>
+              <div className={styles.phoneContact}>
+                <div className={styles.phoneIcon}><img src="/assets/images/Phone.png" alt="Phone" /></div>
+                <div className={styles.phoneDivider} />
+                <div className={styles.phoneText}>
+                  For questions or immediate assistance, call <span className={styles.phoneNumber}>888-750-8733</span>
+                  <br />
+                  Monday–Friday, 8:00 AM–11:00 PM ET
+                </div>
+              </div>
             </div>
           ) : undefined
         }

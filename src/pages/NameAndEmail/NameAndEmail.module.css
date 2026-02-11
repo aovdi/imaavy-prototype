@@ -106,3 +106,33 @@
   line-height: 26px;
   color: var(--text-secondary);
 }
+
+.phoneContact {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-12);
+  margin-top: var(--gap-20);
+}
+
+.phoneIcon {
+  flex-shrink: 0;
+  width: 37px;
+  height: 35px;
+}
+
+.phoneDivider {
+  width: 3px;
+  align-self: stretch;
+  background: #D5D5D5;
+}
+
+.phoneText {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 25px;
+  color: var(--text-primary);
+}
+
+.phoneNumber {
+  font-weight: var(--font-bold);
+}
